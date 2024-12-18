@@ -28,10 +28,12 @@ export default {
 </script>
 
 <template>
-    <h1>Fit Home</h1>
-    <ul>
-        <RouterLink v-for="exercie in exercises" :to="{name:'Exercise', params:{id: exercie.name}}"> {{ exercie.name }}</RouterLink>
-    </ul>
+    <div class="container">
+        <h1>Fit Home</h1>
+        <ul>
+            <RouterLink v-for="exercie in exercises" :to="{name:'Exercise', params:{id: exercie.name}}"> {{ exercie.name }}</RouterLink>
+        </ul>
+    </div>
 </template>
 
 <style lang="scss" scoped>

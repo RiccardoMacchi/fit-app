@@ -65,7 +65,7 @@
         {
             "name": "l-sit",
             "series": [
-                { "duration_seconds": 0 }
+                { "duration_seconds": 50 }
             ]
         },
         {
@@ -83,7 +83,7 @@
         {
             "name": "back lever",
             "series": [
-                { "duration_seconds": 0 }
+                { "duration_seconds": 50 }
             ]
         }
     ]
