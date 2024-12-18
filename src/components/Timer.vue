@@ -49,5 +49,5 @@ export default {
         </select>
         <button @click="timer">START</button>
         <span>{{ getTime }}</span>
-    </div>
+      </div>
 </template>

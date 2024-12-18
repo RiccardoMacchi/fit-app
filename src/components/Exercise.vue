@@ -77,29 +77,64 @@ export default {
         LOADING
     </div>
     <div class="container" v-else>
-        <div>
-            <h1>{{  exercise.name }}</h1>
+        <div class="header-ex">
+            <h1>{{  exercise.name.toUpperCase() }}</h1>
             <Timer/>
         </div>
-        <p>Description</p>
+        <h3>N totale di serie: {{ exercise.series.length }}</h3>
         <div>
-            <span>N di serie: {{ exercise.series.length }}</span>
+            <div>
+                <h5>Descrizione</h5>
+                <p>{{ exercise.description }}</p>
+            </div>
             <ul>
                 <h4>REPS</h4>
                 <li v-for="(n, i) in exercise.series" :key="i">
                     <span @click="removeSerie(i)">
-                        {{i + 1}} serie
+                        {{i + 1}}° serie
                     </span>
-                    <span @click="removeReps(i)">-</span>
-                    reps:{{ n.reps ? n.reps : n.duration_seconds }}
-                    <span @click="addReps(i)">+</span>
+                    <div>
+                        <span @click="removeReps(i)"><i class="fa-solid fa-minus"></i></span>
+                        {{ n.reps >= 0 ? n.reps : n.duration_seconds }}
+                        <span @click="addReps(i)"><i class="fa-solid fa-plus"></i></span>
+                    </div>
 
                 </li>
-                <span @click="addSerie()">ADD Serie</span>
+                <span class="add-serie" @click="addSerie()">Aggiungi Serie</span>
             </ul>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
+.header-ex{
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+ul{
+    margin: 10px auto;
+    border-top: 1px solid grey;
+    li{
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        line-height: 36px;
+    }
+}
+
+.add-serie{
+    float: right;
+    margin-top: 15px;
+    margin-right: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 8px 25px;
+    background-color: gold;
+    color: black;
+}
 </style>

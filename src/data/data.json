@@ -2,6 +2,7 @@
     "exercises": [
         {
             "name": "trazioni",
+            "description": "Esercizio di base per allenare i muscoli della schiena e delle braccia, eseguito sollevando il corpo verso una barra.",
             "series": [
                 { "reps": 2 },
                 { "reps": 4 },
@@ -10,78 +11,77 @@
         },
         {
             "name": "push-up",
+            "description": "Flessioni a terra che coinvolgono petto, spalle, tricipiti e core.",
             "series": [
                 { "reps": 0 }
             ]
         },
         {
             "name": "pull-up",
+            "description": "Esercizio che sviluppa i muscoli dorsali e delle braccia sollevandosi con una presa prona.",
             "series": [
                 { "reps": 0 }
             ]
         },
         {
             "name": "chin-up",
+            "description": "Simile alle trazioni, ma con una presa supina per maggiore enfasi sui bicipiti.",
             "series": [
                 { "reps": 0 }
             ]
         },
         {
             "name": "dips",
+            "description": "Esercizio per petto e tricipiti, eseguito abbassando e sollevando il corpo tra due parallele.",
             "series": [
                 { "reps": 0 }
             ]
         },
         {
             "name": "muscle-up",
+            "description": "Movimento avanzato che combina una trazione e una spinta per portare il corpo sopra una barra.",
             "series": [
                 { "reps": 0 }
             ]
         },
         {
             "name": "squat",
+            "description": "Esercizio fondamentale per gambe e glutei, eseguito piegando le ginocchia e abbassando il corpo.",
             "series": [
                 { "reps": 0 }
             ]
         },
         {
             "name": "pistol squat",
+            "description": "Squat su una gamba sola, ottimo per equilibrio, forza e flessibilità.",
             "series": [
                 { "reps": 0 }
             ]
         },
         {
             "name": "plank",
+            "description": "Esercizio isometrico che rinforza il core mantenendo il corpo in linea retta.",
             "series": [
-                { "duration_seconds": 0 }
+                { "duration_seconds": 60 }
             ]
         },
         {
             "name": "handstand push-up",
-            "series": [
-                { "reps": 0 }
-            ]
-        },
-        {
-            "name": "l-sit",
-            "series": [
-                { "duration_seconds": 50 }
-            ]
-        },
-        {
-            "name": "leg raises",
+            "description": "Flessione eseguita in posizione verticale, utile per spalle e tricipiti.",
             "series": [
                 { "reps": 0 }
             ]
         },
         {
             "name": "front lever",
+            "description": "Posizione isometrica avanzata che richiede forza di trazione e controllo del core.",
             "series": [
-                { "duration_seconds": 0 }
+                { "duration_seconds": 60 }
             ]
         },
         {
             "name": "back lever",
+            "description": "Esercizio isometrico avanzato che sviluppa forza e flessibilità nei muscoli posteriori.",
             "series": [
                 { "duration_seconds": 50 }
             ]
