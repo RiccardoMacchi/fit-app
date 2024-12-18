@@ -1,0 +1,90 @@
+{
+    "exercises": [
+        {
+            "name": "trazioni",
+            "series": [
+                { "reps": 2 },
+                { "reps": 4 },
+                { "reps": 6 }
+            ]
+        },
+        {
+            "name": "push-up",
+            "series": [
+                { "reps": 0 }
+            ]
+        },
+        {
+            "name": "pull-up",
+            "series": [
+                { "reps": 0 }
+            ]
+        },
+        {
+            "name": "chin-up",
+            "series": [
+                { "reps": 0 }
+            ]
+        },
+        {
+            "name": "dips",
+            "series": [
+                { "reps": 0 }
+            ]
+        },
+        {
+            "name": "muscle-up",
+            "series": [
+                { "reps": 0 }
+            ]
+        },
+        {
+            "name": "squat",
+            "series": [
+                { "reps": 0 }
+            ]
+        },
+        {
+            "name": "pistol squat",
+            "series": [
+                { "reps": 0 }
+            ]
+        },
+        {
+            "name": "plank",
+            "series": [
+                { "duration_seconds": 0 }
+            ]
+        },
+        {
+            "name": "handstand push-up",
+            "series": [
+                { "reps": 0 }
+            ]
+        },
+        {
+            "name": "l-sit",
+            "series": [
+                { "duration_seconds": 0 }
+            ]
+        },
+        {
+            "name": "leg raises",
+            "series": [
+                { "reps": 0 }
+            ]
+        },
+        {
+            "name": "front lever",
+            "series": [
+                { "duration_seconds": 0 }
+            ]
+        },
+        {
+            "name": "back lever",
+            "series": [
+                { "duration_seconds": 0 }
+            ]
+        }
+    ]
+}
