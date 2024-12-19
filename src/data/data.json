@@ -121,7 +121,7 @@
             ]
           },
           {
-            "name": "Dip (pausa 2')",
+            "name": "Dip",
             "pause": "2'",
             "series": [
               { "reps": 2, "notes": "ISO 2''" },
@@ -170,171 +170,257 @@
       },
       {
         "name": "Settimana 1 - Scheda 3",
+        "description": "Scheda di allenamento composta da esercizi avanzati di trazione e spinta, da ripetere nella terza settimana.",
+        "exercises": [
+          {
+            "name": "Pull up + loop sottile",
+            "description": "Trazioni assistite con elastico sottile.",
+            "pause": "2' ",
+            "series": [
+              { "reps": 1, "notes": "ISO 1" },
+              { "reps": 1, "notes": "ISO 1" }
+            ]
+          },
+          {
+            "name": "Pull up + loop media",
+            "description": "Trazioni a piramide decrescente per migliorare forza e resistenza.",
+            "pause": "2' ",
+            "series": [
+              { "reps": 3 },
+              { "reps": 3 },
+              { "reps": 3 },
+              { "reps": 3 },
+              { "reps": 3 }
+            ]
+          },
+          {
+            "name": "Pull up negativi",
+            "description": "Parti da rialzo con il mento già sopra alla sbarra",
+            "pause": "2' ",
+            "notes": "discesa in 5''",
+            "series": [
+              { "reps": 4 },
+              { "reps": 4 },
+              { "reps": 4 },
+              { "reps": 4 },
+              { "reps": 4 }              
+            ]
+          },
+          {
+            "name": "Australian",
+            "description": "Flessioni a piramide decrescente per migliorare forza nel petto e tricipiti.",
+            "pause": "2' ",
+            "series": [
+              { "reps": 8 },
+              { "reps": 8 },
+              { "reps": 3, "notes": "discesa in 3" },
+              { "reps": 3, "notes": "discesa in 3" },
+              { "reps": 3, "notes": "discesa in 3" }
+            
+            ]
+          },
+          {
+            "name": "Push up",
+            "description": "Flessioni per sviluppare forza nel petto.",
+            "pause": "2'30'' - 2'",
+            "series": [
+              { "reps": 6 },
+              { "reps": 6 },
+              { "reps": 6 },
+              { "reps": 5 },
+              { "reps": 5 },
+              { "reps": 5 },
+              { "reps": 5 },
+              { "reps": 5 }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Settimana 2 - Scheda 1",
         "description": "Scheda di allenamento composta da esercizi avanzati di trazione e spinta, da ripetere nella seconda settimana.",
         "exercises": [
           {
             "name": "Pull up + loop sottile",
             "description": "Trazioni assistite con elastico sottile.",
+            "notes": "1 salita in 3 secondi",
+            "pause": "2'30''",
             "series": [
-              { "reps": 4, "notes": "1 salita in 3 secondi" },
-              { "reps": 3 },
-              { "reps": 2 },
+              { "reps": 1 },
+              { "reps": 1 },
+              { "reps": 1 },
               { "reps": 1 }
+              
             ]
           },
           {
             "name": "Pull up pyramid a scendere",
             "description": "Trazioni a piramide decrescente per migliorare forza e resistenza.",
+            "pause": "2'30''",
             "series": [
-              { "reps": 6 },
-              { "reps": 4 },
-              { "reps": 2 }
+                { "reps": 3, "notes": "loop sottile" },
+                { "reps": 2, "notes": "loop sottile" },
+                { "reps": 1, "notes": "loop sottile" },
+                { "reps": 6, "notes": "loop media" },
+                { "reps": 4, "notes": "loop media" },
+                { "reps": 2, "notes": "loop media" }
             ]
           },
           {
-            "name": "Pull up EMOM + loop media",
+            "name": "Pull up",
             "description": "Trazioni eseguite ogni minuto con assistenza media.",
+            "notes": "EMOM + loop media 8min", 
             "series": [
-              { "reps": 8, "notes": "EMOM" }
+              { "reps": 1}
             ]
           },
           {
             "name": "Push up pyramid a scendere",
             "description": "Flessioni a piramide decrescente per migliorare forza nel petto e tricipiti.",
+            "pause": "2'30''",
             "series": [
               { "reps": 12 },
               { "reps": 10 },
               { "reps": 8 },
               { "reps": 6 }
             ]
+          },
+          {
+            "name": "Push up",
+            "description": "Flessioni a piramide decrescente per migliorare forza nel petto e tricipiti.",
+            "pause": "2'30''",
+            "notes": "EMOM 15min", 
+            "series": [
+              { "reps": 2 }
+            ]
+          },
+          {
+            "name": "Australian",
+            "pause": "2'",
+            "series": [
+              { "reps": 6 },
+              { "reps": 6 },
+              { "reps": 6 },
+              { "reps": 6 },
+              { "reps": 6 },
+              { "reps": 6 }
+            ]
           }
         ]
       },
       {
-        "name": "Settimana 2/3 - Scheda 4",
+        "name": "Settimana 2 - Scheda 2",
         "description": "Scheda di allenamento composta da esercizi avanzati di trazione e spinta, da ripetere nella seconda settimana.",
         "exercises": [
           {
-            "name": "Pull up (pausa 2')",
+            "name": "Pull up",
             "description": "Trazioni con pausa per aumentare la forza massima.",
             "pause": "2'",
             "series": [
-              { "reps": 4, "notes": "2 secondi di pausa" }
+              { "reps": 2},
+              { "reps": 2},
+              { "reps": 2},
+              { "reps": 2}
             ]
           },
           {
             "name": "Pull up + loop sottile",
             "description": "Trazioni assistite con elastico sottile.",
-            "pause": "2 secondi",
+            "pause": "2'",
+            "notes": "ISO 2 secondi",
             "series": [
-              { "reps": 4, "notes": "ISO 2 secondi" }
+              { "reps": 2 },
+              { "reps": 2 },
+              { "reps": 2 },
+              { "reps": 2 }
             ]
           },
           {
-            "name": "Dip (pausa 2')",
+            "name": "Dip",
             "description": "Dips su parallele per petto e tricipiti.",
             "pause": "2'",
             "series": [
-              { "reps": 4, "notes": "2 secondi di pausa" },
-              { "reps": 6, "notes": "Discesa controllata" }
+              { "reps": 4, "notes": "ISO 2" },
+              { "reps": 4, "notes": "ISO 2" },
+              { "reps": 4, "notes": "ISO 2" },
+              { "reps": 4, "notes": "ISO 2" },
+              { "reps": 6, "notes": "Discesa in 3" },
+              { "reps": 6, "notes": "Discesa in 3" },
+              { "reps": 6, "notes": "Discesa in 3" }
             ]
           },
           {
             "name": "Australian anelli",
             "description": "Trazioni orizzontali agli anelli per sviluppare dorsali e braccia.",
             "series": [
-              { "reps": 3, "notes": "1 salita in 3 secondi" }
+              { "reps": 6, "notes": "Salita in 3" },
+              { "reps": 6, "notes": "Salita in 3" },
+              { "reps": 6, "notes": "Salita in 3" }
             ]
           },
           {
             "name": "Pull up + loop media",
             "description": "Trazioni assistite con un elastico di media resistenza.",
+            "notes": "ISO 1 secondo",
             "series": [
-              { "reps": 3, "notes": "ISO 1 secondo" }
+              { "reps": 4 },
+              { "reps": 4 },
+              { "reps": 4 }
             ]
           }
         ]
       },
       {
-        "name": "Settimana 3/3 - Scheda 5",
+        "name": "Settimana 2 - Scheda 3",
         "description": "Scheda di allenamento composta da esercizi avanzati di trazione e spinta, da ripetere nella terza settimana.",
         "exercises": [
           {
             "name": "Pull up alla fronte",
             "description": "Trazioni portando il mento sopra la barra.",
-            "pause": "3 minuti",
+            "pause": "3'",
             "series": [
-              { "reps": 3, "notes": "Pausa 3 minuti" }
+              { "reps": 4 },
+              { "reps": 4 },
+              { "reps": 4 }
             ]
           },
           {
             "name": "Pull up + loop media",
             "description": "Trazioni assistite con elastico media resistenza.",
-            "pause": "3 minuti",
+            "pause": "3'",
             "series": [
-              { "reps": 2, "notes": "Pausa 3 minuti" }
+              { "reps": 5},
+              { "reps": 5}
             ]
           },
           {
             "name": "Dip",
             "description": "Dips per sviluppare petto e tricipiti.",
-            "pause": "3 minuti",
+            "pause": "3' / 2'",
             "series": [
-              { "reps": 2, "notes": "Pausa 3 minuti" },
-              { "reps": 5 },
-              { "reps": 4 }
+              { "reps": 5, "notes": "Pausa 3 minuti" },
+              { "reps": 5, "notes": "Pausa 3 minuti" },
+              { "reps": 4, "notes": "Pausa 2 minuti" },
+              { "reps": 4, "notes": "Pausa 2 minuti" },
+              { "reps": 4, "notes": "Pausa 2 minuti" },
+              { "reps": 4, "notes": "Pausa 2 minuti" },
+              { "reps": 4, "notes": "Pausa 2 minuti" }
             ]
           },
           {
             "name": "Push up",
             "description": "Flessioni per sviluppare petto, spalle e tricipiti.",
-            "pause": "3 minuti",
-            "series": [
-              { "reps": 2, "notes": "12 ripetizioni, pausa 3 minuti" },
-              { "reps": 10 },
-              { "reps": 8 }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "Settimana 3/3 - Scheda 6",
-        "description": "Scheda di allenamento composta da esercizi avanzati di trazione e spinta, da ripetere nella terza settimana.",
-        "exercises": [
-          {
-            "name": "Pull up + loop sottile",
-            "description": "Trazioni assistite con elastico sottile.",
-            "series": [
-              { "reps": 4, "notes": "1 salita in 3 secondi" },
-              { "reps": 3 },
-              { "reps": 2 },
-              { "reps": 1 }
-            ]
-          },
-          {
-            "name": "Pull up pyramid a scendere",
-            "description": "Trazioni a piramide decrescente per migliorare forza e resistenza.",
-            "series": [
-              { "reps": 6 },
-              { "reps": 4 },
-              { "reps": 2 }
-            ]
-          },
-          {
-            "name": "Pull up EMOM + loop media",
-            "description": "Trazioni eseguite ogni minuto con assistenza media.",
-            "series": [
-              { "reps": 8, "notes": "EMOM" }
-            ]
-          },
-          {
-            "name": "Push up pyramid a scendere",
-            "description": "Flessioni a piramide decrescente per migliorare forza nel petto e tricipiti.",
+            "pause": "3' ",
             "series": [
               { "reps": 12 },
+              { "reps": 12 },
+              { "reps": 10 },
               { "reps": 10 },
               { "reps": 8 },
-              { "reps": 6 }
+              { "reps": 8 },
+              { "reps": 8 },
+              { "reps": 8 },
+              { "reps": 8 }
             ]
           }
         ]
