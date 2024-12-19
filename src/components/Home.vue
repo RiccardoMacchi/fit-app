@@ -63,8 +63,8 @@ export default {
             <h5 id="added" v-show="isAdded">Esercizio aggiunto!</h5>
             <h5 id="error" v-show="isNotAdded">Impossibile aggiungere l'esercizio!</h5>
         </div>
+        <h4>Tot schede: {{ exerciseCards.length }}</h4>
         <ul>
-            <h4>Tot schede: {{ exerciseCards.length }}</h4>
             <RouterLink v-for="card in exerciseCards" :to="{name:'ExerciseList', params:{id: card.name}}"> {{ card.name }}</RouterLink>
         </ul>
     </div>
@@ -89,6 +89,10 @@ h5{
     &#error{
         color: red;
     }
+}
+
+h4{
+    text-align: right;
 }
 
 .search-bar{

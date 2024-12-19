@@ -103,14 +103,18 @@ export default {
 
             <Timer/>
         </div>
-        <h3>N totale di serie: {{ exercise.series.length }}</h3>
+        <h3 class="serie-length">N totale di serie: {{ exercise.series.length }}</h3>
         <div>
-            <div>
+            <!-- <div>
                 <h5>Descrizione</h5>
                 <p>{{ exercise.description }}</p>
+            </div> -->
+            <div>
+                <b>INFO:</b>
+                <p>{{ exercise.notes }}</p>
             </div>
             <ul>
-                <h4>REPS</h4>
+                <h4>SERIE E N° RIPETIZIONI</h4>
                 <li @click.prevent="completeSerie(i)" class="ex-list" :class="{'done': selectedSeriesIndices.includes(i)}" v-for="(n, i) in exercise.series" :key="i">
                     <span @click.stop="removeSerie(i)">
                         {{i + 1}}° serie
@@ -159,7 +163,9 @@ ul{
         }
     }
 }
-
+.serie-length{
+    text-align: right;
+}
 .add-serie{
     float: right;
     margin-top: 15px;
@@ -168,6 +174,7 @@ ul{
     border-radius: 5px;
     padding: 8px 25px;
     background-color: gold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     color: black;
 }
 

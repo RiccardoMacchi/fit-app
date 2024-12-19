@@ -67,7 +67,7 @@ export default {
 
 <template>
     <div class="container">
-        <h1>Lista Esercizi</h1>
+        <h1>Lista Esercizi: <br> {{ exerciseListName }}</h1>
         <div>
             <div class="search-bar">
                 <input type="text" v-model="exName">

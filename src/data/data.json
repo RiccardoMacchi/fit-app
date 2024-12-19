@@ -26,7 +26,7 @@
             ]
           },
           {
-            "name": "Pull up partenza da 120°",
+            "name": "Pull up 120°",
             "description": "Trazioni parziali con partenza da un angolo di 120 gradi.",
             "pause": "2'",
             "series": [
@@ -144,7 +144,7 @@
             ]
           },
           {
-            "name": "Plank (pausa 1' tra un round e l'altro)",
+            "name": "Plank",
             "description": "Esercizio di stabilità per il core.",
             "pause": "1'",
             "series": [
@@ -156,7 +156,7 @@
             ]
           },
           {
-            "name": "Australian (anelli se possibile)",
+            "name": "Australian",
             "pause": "2'",
             "notes": "Salita in 3 secondi",
             "series": [
@@ -254,7 +254,7 @@
             ]
           },
           {
-            "name": "Pull up pyramid a scendere",
+            "name": "Pull up pyramid",
             "description": "Trazioni a piramide decrescente per migliorare forza e resistenza.",
             "pause": "2'30''",
             "series": [
@@ -275,7 +275,7 @@
             ]
           },
           {
-            "name": "Push up pyramid a scendere",
+            "name": "Push up pyramid",
             "description": "Flessioni a piramide decrescente per migliorare forza nel petto e tricipiti.",
             "pause": "2'30''",
             "series": [
@@ -350,7 +350,7 @@
             ]
           },
           {
-            "name": "Australian anelli",
+            "name": "Australian",
             "description": "Trazioni orizzontali agli anelli per sviluppare dorsali e braccia.",
             "series": [
               { "reps": 6, "notes": "Salita in 3" },
@@ -408,7 +408,7 @@
             ]
           },
           {
-            "name": "Push up",
+            "name": "Push up pyramid",
             "description": "Flessioni per sviluppare petto, spalle e tricipiti.",
             "pause": "3' ",
             "series": [
