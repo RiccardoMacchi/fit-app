@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import Home from '../components/Home.vue';
 import Exercise from '../components/Exercise.vue';
+import ExerciseList from '../components/ExerciseList.vue';
 
 const routes = [
     {
@@ -10,7 +11,12 @@ const routes = [
         component: Home
     },
     {
-        path: '/esercizio/:id',
+        path: '/esercizi/:id',
+        name: 'ExerciseList',
+        component: ExerciseList
+    },
+    {
+        path: '/esercizio/:id/:listId',
         name: 'Exercise',
         component: Exercise
     },
