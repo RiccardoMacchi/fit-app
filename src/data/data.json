@@ -425,6 +425,113 @@
           }
         ]
       }
+    ],
+    "diet": [
+        {
+            "cookbook": [
+                {
+                    "name": "breakfast",
+                    "dishes": [
+                        {
+                            "name": "latte e cereali",
+                            "ingredients": ["latte", "cereali"],
+                            "preparation": "Versa il latte in una ciotola e aggiungi i cereali a piacere. Mescola e servi."
+                        },
+                        {
+                            "name": "toast con marmellata",
+                            "ingredients": ["pane integrale", "marmellata"],
+                            "preparation": "Tosta il pane integrale, spalmaci sopra la marmellata preferita e servi caldo."
+                        },
+                        {
+                            "name": "yogurt e frutta",
+                            "ingredients": ["yogurt", "fragole", "mirtilli"],
+                            "preparation": "Versa lo yogurt in una ciotola e aggiungi fragole tagliate a pezzi e mirtilli freschi."
+                        }
+                    ]
+                },
+                {
+                    "name": "spuntino 1",
+                    "dishes": [
+                        {
+                            "name": "barretta di cereali",
+                            "ingredients": ["fiocchi d'avena", "miele", "frutta secca"],
+                            "preparation": "Mescola fiocchi d'avena, miele e frutta secca. Pressa il composto in una teglia, cuoci in forno per 15 minuti a 180°C e lascia raffreddare prima di tagliare."
+                        },
+                        {
+                            "name": "frullato di frutta",
+                            "ingredients": ["banana", "latte di mandorla", "cacao amaro"],
+                            "preparation": "Frulla insieme la banana, il latte di mandorla e un cucchiaino di cacao amaro fino a ottenere un composto omogeneo."
+                        },
+                        {
+                            "name": "frutta secca",
+                            "ingredients": ["mandorle", "noci", "uvetta"],
+                            "preparation": "Mescola mandorle, noci e uvetta in una ciotola e servi come snack."
+                        }
+                    ]
+                },
+                {
+                    "name": "pranzo",
+                    "dishes": [
+                        {
+                            "name": "pasta al pomodoro",
+                            "ingredients": ["pasta", "pomodoro", "olio d'oliva", "basilico"],
+                            "preparation": "Cuoci la pasta in abbondante acqua salata. Nel frattempo, prepara una salsa con pomodoro, olio d'oliva e basilico. Scola la pasta e condiscila con la salsa."
+                        },
+                        {
+                            "name": "petto di pollo e verdure grigliate",
+                            "ingredients": ["petto di pollo", "zucchine", "melanzane", "peperoni"],
+                            "preparation": "Griglia le verdure e il petto di pollo, aggiungi sale e pepe a piacere e servi insieme."
+                        },
+                        {
+                            "name": "insalata mista con tonno",
+                            "ingredients": ["insalata", "tonno", "mais", "olive"],
+                            "preparation": "Mescola l'insalata con il tonno sgocciolato, il mais e le olive. Condisci con olio e sale."
+                        }
+                    ]
+                },
+                {
+                    "name": "spuntino 2",
+                    "dishes": [
+                        {
+                            "name": "yogurt greco e miele",
+                            "ingredients": ["yogurt greco", "miele", "noci"],
+                            "preparation": "Versa lo yogurt greco in una ciotola, aggiungi un cucchiaio di miele e cospargi con noci tritate."
+                        },
+                        {
+                            "name": "cracker integrali con formaggio spalmabile",
+                            "ingredients": ["cracker integrali", "formaggio spalmabile"],
+                            "preparation": "Spalma il formaggio sui cracker e servi come snack."
+                        },
+                        {
+                            "name": "smoothie ai frutti di bosco",
+                            "ingredients": ["mirtilli", "lamponi", "yogurt"],
+                            "preparation": "Frulla i mirtilli, i lamponi e lo yogurt fino a ottenere una bevanda cremosa."
+                        }
+                    ]
+                },
+                {
+                    "name": "cena",
+                    "dishes": [
+                        {
+                            "name": "minestrone di verdure",
+                            "ingredients": ["zucchine", "carote", "patate", "fagioli"],
+                            "preparation": "Cuoci tutte le verdure tagliate a pezzi in acqua salata. Frulla parzialmente per una consistenza cremosa e servi caldo."
+                        },
+                        {
+                            "name": "frittata con spinaci",
+                            "ingredients": ["uova", "spinaci", "parmigiano"],
+                            "preparation": "Sbatti le uova con il parmigiano, aggiungi gli spinaci e cuoci in padella fino a doratura."
+                        },
+                        {
+                            "name": "salmone al forno con patate",
+                            "ingredients": ["salmone", "patate", "rosmarino"],
+                            "preparation": "Disponi il salmone e le patate tagliate a pezzi su una teglia, condisci con rosmarino e cuoci in forno a 200°C per 20 minuti."
+                        }
+                    ]
+                }
+            ]
+        }
     ]
-  }
+
+}
   

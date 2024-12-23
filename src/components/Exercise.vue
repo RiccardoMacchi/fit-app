@@ -33,9 +33,9 @@ export default {
         },
 
         saveToLocalStorage() {
-            console.log(this.exerciseCards)
+            // console.log(this.exerciseCards)
             localStorage.setItem('exerciseCards', JSON.stringify(this.exerciseCards))
-            console.log(this.exerciseCards)
+            // console.log(this.exerciseCards)
 
         },
         addReps(i) {
@@ -109,20 +109,23 @@ export default {
                 <h5>Descrizione</h5>
                 <p>{{ exercise.description }}</p>
             </div> -->
-            <div>
+            <div v-if="exercise.notes">
                 <b>INFO:</b>
                 <p>{{ exercise.notes }}</p>
             </div>
             <ul>
                 <h4>SERIE E N° RIPETIZIONI</h4>
                 <li @click.prevent="completeSerie(i)" class="ex-list" :class="{'done': selectedSeriesIndices.includes(i)}" v-for="(n, i) in exercise.series" :key="i">
-                    <span @click.stop="removeSerie(i)">
-                        {{i + 1}}° serie
-                    </span>
-                    <span class="info">{{ n.notes }}</span>
                     <div>
+                        <i class="fa-solid fa-trash" @click.stop="removeSerie(i)"></i>
+                        <span>
+                            {{i + 1}}° serie
+                        </span>
+                    </div>
+                    <span class="info">{{ n.notes }}</span>
+                    <div class="reps">
                         <span @click.stop="removeReps(i)"><i class="fa-solid fa-minus"></i></span>
-                        {{ n.reps >= 0 ? n.reps : n.duration_seconds }}
+                        <span class="n-reps">{{ n.reps >= 0 ? n.reps : n.duration_seconds }}</span>
                         <span @click.stop="addReps(i)"><i class="fa-solid fa-plus"></i></span>
                     </div>
 
@@ -160,6 +163,32 @@ ul{
 
         .info{
             font-size: 0.8rem;
+        }
+
+        .fa-solid.fa-trash{
+            margin-right: 3px;
+            background: linear-gradient(90deg, #ff4500, #ff6347, #ff7f50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reps{
+            font-size: 1.3rem;
+            .fa-solid.fa-minus{
+                color: yellowgreen;
+                padding: 5px;
+                background: #3d3d3d;
+                border-radius: 5px;
+            }
+            .fa-solid.fa-plus{
+                color: #ff4500;
+                padding: 5px;
+                background: #3d3d3d;
+                border-radius: 5px;
+            }
+            .n-reps{
+                margin: 0px 5px;
+            }
         }
     }
 }

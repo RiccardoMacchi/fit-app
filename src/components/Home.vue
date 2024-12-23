@@ -1,6 +1,5 @@
 <script>
 import exerciseCards from '../data/data.json';
-import { RouterLink } from "vue-router";
 
 export default {
     name: 'Home',
@@ -54,7 +53,7 @@ export default {
 
 <template>
     <div class="container">
-        <h1>Home</h1>
+        <h1>Le mie Schede</h1>
         <div>
             <div class="search-bar">
                 <input type="text" v-model="exName">

@@ -12,8 +12,8 @@ export default{
             <img src="../../../public/logo-fit-app.png" alt="Home">
         </RouterLink>
         <ul>
-            <RouterLink :to="{name:'Home'}">Home</RouterLink>
-            <RouterLink :to="{name:'Home'}">Alimentazione</RouterLink>
+            <RouterLink :to="{name:'Home'}">Le mie Schede</RouterLink>
+            <RouterLink :to="{name:'Diet'}">Alimentazione</RouterLink>
         </ul>
     </div>
 </template>
