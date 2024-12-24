@@ -13,7 +13,7 @@ import Footer from './components/partials/Footer.vue';
 
 <style lang="scss" scoped>
   section{
-    padding-top: 60px;
+    padding: 60px 0px;
     height: calc(100vh - 50px);
     overflow-y: auto;
   }

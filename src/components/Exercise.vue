@@ -12,7 +12,8 @@ export default {
             exercise: {},
             isLoading: true,
             listId: null,
-            selectedSeriesIndices: []
+            selectedSeriesIndices: [],
+            noteEx : '',
         }
     },
     components:{
@@ -59,8 +60,9 @@ export default {
         },
         addSerie(){
             console.log('click')
-            this.exercise.series.push({ "reps": 0 })
+            this.exercise.series.push({ "reps": 0, "notes" : this.noteEx })
             this.saveToLocalStorage()
+            this.noteEx = ''
         },
         removeSerie(i){
             this.exercise.series.splice(i,1)
@@ -130,7 +132,12 @@ export default {
                     </div>
 
                 </li>
-                <span class="add-serie" @click="addSerie()">Aggiungi Serie</span>
+                <div class="add-wrapper-serie">
+                    <span class="add-serie" @click="addSerie()">Aggiungi Serie</span>
+                    <div>
+                        <input type="text" v-model="noteEx" placeholder="Note nuova serie">
+                    </div>
+                </div>
             </ul>
         </div>
     </div>
@@ -195,16 +202,26 @@ ul{
 .serie-length{
     text-align: right;
 }
-.add-serie{
-    float: right;
-    margin-top: 15px;
+.add-wrapper-serie{
+    text-align: right;
     margin-right: 10px;
-    display: inline-block;
-    border-radius: 5px;
-    padding: 8px 25px;
-    background-color: gold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    color: black;
+    margin-top: 15px;
+    .add-serie{
+        display: inline-block;
+        border-radius: 5px;
+        padding: 8px 25px;
+        background-color: gold;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        color: black;
+    }
+    div{
+        text-align: right;
+        input{
+            margin-top: 5px;
+            padding: 3px;
+            border-radius: 5px;
+        }
+    }
 }
 
 </style>

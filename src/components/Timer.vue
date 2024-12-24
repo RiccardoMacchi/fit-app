@@ -46,10 +46,10 @@ export default {
     <div id="timer">
       <div v-if="!timerGo">
         <select v-model="minutes" id="minutes">
-            <option v-for="minute in 60" :key="minute" :value="minute">{{ minute }}</option>
+            <option v-for="minute in 5" :key="minute" :value="minute">{{ minute }}</option>
         </select>
         <select v-model="seconds" id="seconds">
-            <option v-for="second in 60" :key="second" :value="second">{{ second }}</option>
+            <option v-for="second in 59" :key="second" :value="second">{{ second }}</option>
         </select>
         <button @click="timer">START</button>
       </div>

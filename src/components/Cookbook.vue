@@ -34,14 +34,24 @@ export default{
     </div>
     <div v-else class="container">
         <h1>Ricettario</h1>
-        <div v-for="cook in diet">
-            <RouterLink :to="{ name: 'Meal', params:{id: cook.name}}">
-                {{ cook.name }}
-            </RouterLink>
-        </div>
+        <RouterLink class="list-cookbook" v-for="cook in diet" :to="{ name: 'Meal', params:{id: cook.name}}">
+            {{ cook.name }}
+        </RouterLink>
     </div>
 </template>
 
 <style lang="scss" scoped>
+.list-cookbook{
+    display: inline-block;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #f7c788, #e89b42, #c55732);
+    margin: 3px auto;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
 
 </style>
