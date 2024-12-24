@@ -25,6 +25,7 @@ export default {
                 const newExercise = {
                         name: this.exName.trim(),
                         description: '',
+                        pause: '',
                         series: [
                         { reps: 0 }
                     ],

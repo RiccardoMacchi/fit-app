@@ -9,7 +9,7 @@ export default {
             isLoading: true,
             isAdded: false,
             isNotAdded: false,
-            exName: '',
+            schedaName: '',
             }
     },
     methods:{
@@ -17,24 +17,22 @@ export default {
             localStorage.setItem('exerciseCards', JSON.stringify(this.exerciseCards))
         },
         addScheda(){
-            const isPresent = this.exerciseCards.some(scheda => scheda.name.includes(this.exName.trim().toLowerCase()))
-            if(this.exName.trim() !== '' && !isPresent){
-                const newExercise = {
-                        name: this.exName.trim(),
+            const isPresent = this.exerciseCards.some(scheda => scheda.name.includes(this.schedaName.trim().toLowerCase()))
+            if(this.schedaName.trim() !== '' && !isPresent){
+                const newScheda = {
+                        name: this.schedaName.trim(),
                         description: '',
-                        series: [
-                        { reps: 0 }
-                    ],
+                        exercises: []
                 }
-                this.exerciseCards.push(newExercise)
+                this.exerciseCards.push(newScheda)
                 this.saveToLocalStorage();
-                this.exName = ''
+                this.schedaName = ''
                 this.isAdded = true
                 this.isNotAdded = false
             } else{
                 this.isAdded = false
                 this.isNotAdded = true
-                this.exName = ''
+                this.schedaName = ''
             }
         }
     },
@@ -56,11 +54,11 @@ export default {
         <h1>Le mie Schede</h1>
         <div>
             <div class="search-bar">
-                <input type="text" v-model="exName">
+                <input type="text" v-model="schedaName">
                 <span @click="addScheda()"><i class="fa-solid fa-plus"></i></span>
             </div>
-            <h5 id="added" v-show="isAdded">Esercizio aggiunto!</h5>
-            <h5 id="error" v-show="isNotAdded">Impossibile aggiungere l'esercizio!</h5>
+            <h5 id="added" v-show="isAdded">Scheda aggiunta!</h5>
+            <h5 id="error" v-show="isNotAdded">Impossibile aggiungere la scheda!</h5>
         </div>
         <h4>Tot schede: {{ exerciseCards.length }}</h4>
         <ul>
