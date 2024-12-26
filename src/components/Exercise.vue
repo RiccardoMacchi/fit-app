@@ -171,13 +171,6 @@ ul{
             font-size: 0.8rem;
         }
 
-        .fa-solid.fa-trash{
-            margin-right: 3px;
-            background: linear-gradient(90deg, #ff4500, #ff6347, #ff7f50);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .reps{
             font-size: 1.3rem;
             .fa-solid.fa-minus{

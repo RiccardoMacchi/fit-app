@@ -42,6 +42,11 @@ export default {
 
             }
         },
+        removeExercise(i){
+            this.exercises.splice(i, 1)
+            this.saveToLocalStorage()
+
+        },
         actualList(id){
             this.exerciseCards.forEach(list =>{
                 if(list.name === id){
@@ -78,20 +83,29 @@ export default {
             <h5 id="error" v-show="isNotAdded">Impossibile aggiungere l'esercizio!</h5>
         </div>
         <ul>
-            <RouterLink v-for="exercie in exercises" :to="{name:'Exercise', params:{id: exercie.name, listId: exerciseListName }}"> {{ exercie.name }}</RouterLink>
+            <li v-for="exercie in exercises">
+                <RouterLink :to="{name:'Exercise', params:{id: exercie.name, listId: exerciseListName }}"> {{ exercie.name }} 
+                </RouterLink>
+                <span @click.stop="removeExercise(i)"><i class="fa-solid fa-trash"></i></span>
+            </li>
         </ul>
     </div>
 </template>
 
 <style lang="scss" scoped>
-a{
+li{
     display: block;
-    text-decoration: none;
-    color: white;
     padding: 10px 5px;
     border: 1px solid grey;
     border-radius: 5px;
     margin: 2px auto;
+    display: flex;
+    justify-content: space-between;
+    a{
+        text-decoration: none;
+        color: white;
+        flex-grow: 1;
+    }
 }
 
 h5{

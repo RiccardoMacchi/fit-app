@@ -25,7 +25,7 @@ export default {
                         exercises: []
                 }
                 this.exerciseCards.push(newScheda)
-                this.saveToLocalStorage();
+                this.saveToLocalStorage()
                 this.schedaName = ''
                 this.isAdded = true
                 this.isNotAdded = false
@@ -34,6 +34,10 @@ export default {
                 this.isNotAdded = true
                 this.schedaName = ''
             }
+        },
+        removeScheda(i){
+            this.exerciseCards.splice(i, 1)
+            this.saveToLocalStorage()
         }
     },
     mounted(){
@@ -62,20 +66,27 @@ export default {
         </div>
         <h4>Tot schede: {{ exerciseCards.length }}</h4>
         <ul>
-            <RouterLink v-for="card in exerciseCards" :to="{name:'ExerciseList', params:{id: card.name}}"> {{ card.name }}</RouterLink>
+            <li  v-for="(card, i) in exerciseCards">
+                <RouterLink :to="{name:'ExerciseList', params:{id: card.name}}"> {{ card.name }}</RouterLink>
+                <span @click.stop="removeScheda(i)"><i class="fa-solid fa-trash"></i></span>
+            </li>
         </ul>
     </div>
 </template>
 
 <style lang="scss" scoped>
-a{
-    display: block;
-    text-decoration: none;
-    color: white;
+li{
+    list-style: none;
     padding: 10px 5px;
     border: 1px solid grey;
     border-radius: 5px;
     margin: 2px auto;
+    display: flex;
+    justify-content: space-between;
+    a{
+        text-decoration: none;
+        color: white;
+    }
 }
 
 h5{

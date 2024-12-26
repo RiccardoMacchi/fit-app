@@ -59,6 +59,14 @@ export default{
             } else{
                 this.errorNewDish = true
             }
+        },
+        removeDish(i){
+            for (let k = 0; k < this.diet.length; k++) {
+                    if(this.diet[k].name === this.mealName){
+                        this.diet[k].dishes.splice(i, 1)
+                        this.saveToLocalStorage()
+                    }
+                }
         }
     },
     mounted(){
@@ -87,10 +95,11 @@ export default{
         <div>
             <ul>
                 <h4>Piatti a disposizione: {{ meal.dishes.length }}</h4>
-                <li v-for="dish in meal.dishes">
-                    <h3>
-                        {{ dish.name }}
-                    </h3>
+                <li v-for="(dish, i) in meal.dishes">
+                    <div class="title-dish">
+                        <h3>{{ dish.name }}</h3>
+                        <span @click="removeDish(i)"><i class="fa-solid fa-trash"></i></span>
+                    </div>
                     <div class="ingredients">
                         <h5>Ingredienti:</h5>
                         <span class="bedge" v-for="ingredients in dish.ingredients">
@@ -120,7 +129,7 @@ export default{
             </div>
             <div>
                 <label for="prep">Preparazione:</label>
-                <textarea name="prep" v-model="newPreparation" placeholder="Aggiungi una breve descrizione"></textarea>
+                <textarea name="prep" rows="6" v-model="newPreparation" placeholder="Scrivi i passaggi per la preparazione"></textarea>
             </div>
             <div class="btn-add">
                 <h5 v-show="errorNewDish" class="error">Aggiungi almeno il nome del piatto!</h5>
@@ -157,6 +166,10 @@ li{
 .error{
     color: red;
     margin: 2px auto;
+}
+.title-dish{
+    display: flex;
+    justify-content: space-between;
 }
 
 .add-dish{

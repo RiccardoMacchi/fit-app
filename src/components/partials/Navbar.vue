@@ -34,7 +34,10 @@ div{
         margin: 0 10px;
         flex-grow: 1;
         justify-content: space-between;
+        text-align: center;
         a{
+            flex-grow: 1;
+            font-size: 1.4rem;
             text-decoration: none;
             color: gold;
         }
