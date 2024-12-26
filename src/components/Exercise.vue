@@ -42,7 +42,6 @@ export default {
         addReps(i) {
             if(this.exercise.series[i].reps >= 0){
                 this.exercise.series[i].reps++
-                console.log(this.exercise.series[i].reps)
             } else {
                 this.exercise.series[i].duration_seconds++
             }
