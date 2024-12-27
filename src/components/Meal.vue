@@ -91,7 +91,14 @@ export default{
         LOADING
     </div>
     <div v-else class="container">
-        <h1>{{ mealName }}</h1>
+        <div class="title">
+            <h1>{{ mealName }}</h1>
+            <div class="list-diet">
+                <RouterLink :to="{name: 'Cookbook'}">
+                    <i class="fa-solid fa-utensils"></i>
+                </RouterLink>
+            </div>
+        </div>
         <div>
             <ul>
                 <h4>Piatti a disposizione: {{ meal.dishes.length }}</h4>
@@ -208,6 +215,28 @@ li{
             border-top-right-radius: 10px;
             border-bottom-right-radius: 10px;
             background-color: #248f3b;
+        }
+    }
+}
+
+.title{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px auto;
+    .list-diet{
+        text-align: center;
+        background: linear-gradient(135deg, #f7c788, #e89b42, #c55732);
+        border-radius: 5px;
+        font-weight: 600;
+        position: relative;
+        padding: 3px 25px;
+        a{
+            color: black;
+            text-decoration: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
         }
     }
 }

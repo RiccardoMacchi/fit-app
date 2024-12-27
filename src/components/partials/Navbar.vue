@@ -12,7 +12,7 @@ export default{
             <img src="../../../public/logo-fit-app.png" alt="Home">
         </RouterLink>
         <ul>
-            <RouterLink :to="{name:'Home'}"><i class="fa-solid fa-layer-group"></i></RouterLink>
+            <RouterLink :to="{name:'Home'}"><i class="fa-solid fa-dumbbell"></i></RouterLink>
             <RouterLink :to="{name:'ChallengeList'}"><i class="fa-solid fa-bullseye"></i></RouterLink>
             <RouterLink :to="{name:'Diet'}"><i class="fa-solid fa-utensils"></i></RouterLink>
         </ul>

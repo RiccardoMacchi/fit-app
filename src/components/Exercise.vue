@@ -10,6 +10,8 @@ export default {
             thisExercise: '',
             thisExerciseList: '',
             exercise: {},
+            prevExercise: {},
+            nextExercise: {},
             isLoading: true,
             listId: null,
             selectedSeriesIndices: [],
@@ -24,13 +26,15 @@ export default {
             const list = this.exerciseCards.find(list => list.name === id);
 
             if (list) {
-                const exercise = list.exercises.find(ex => ex.name === exName);
-                
-                if (exercise) {
-                    this.exercise = { ...exercise };
-                    this.isLoading = false;
-                }
+            const index = list.exercises.findIndex(ex => ex.name === exName);
+
+            if (index !== -1) {
+                this.exercise = { ...list.exercises[index] };
+                this.prevExercise = index > 0 ? { ...list.exercises[index - 1] } : null;
+                this.nextExercise = index < list.exercises.length - 1 ? { ...list.exercises[index + 1] } : null;
+                this.isLoading = false;
             }
+        }
         },
 
         saveToLocalStorage() {
@@ -87,7 +91,17 @@ export default {
         this.thisExercise = this.$route.params.id
         this.thisExerciseList = this.$route.params.listId
         this.actualEx(this.thisExerciseList, this.thisExercise)
-    }
+    },
+    watch: {
+        '$route.params': {
+            handler(newParams) {
+                this.thisExercise = newParams.id;
+                this.thisExerciseList = newParams.listId;
+                this.actualEx(this.thisExerciseList, this.thisExercise);
+            },
+            immediate: true,
+        },
+    },
 }
 </script>
 
@@ -104,7 +118,12 @@ export default {
 
             <Timer/>
         </div>
-        <h3 class="serie-length">N totale di serie: {{ exercise.series.length }}</h3>
+        <div class="back-list">
+            <RouterLink :to="{name:'ExerciseList', params:{id: thisExerciseList}}">
+                <i class="fa-solid fa-layer-group"></i>
+            </RouterLink>
+            <h3 class="serie-length">N totale di serie: {{ exercise.series.length }}</h3>
+        </div>
         <div>
             <!-- <div>
                 <h5>Descrizione</h5>
@@ -139,6 +158,16 @@ export default {
                 </div>
             </ul>
         </div>
+        <div class="prev-next">
+            <RouterLink v-if="prevExercise" :to="{name:'Exercise', params:{id: prevExercise.name, listId: thisExerciseList }}">
+                <i class="fa-solid fa-caret-left"></i>
+            </RouterLink>
+            <span v-else></span>
+            <RouterLink v-if="nextExercise" :to="{name:'Exercise', params:{id: nextExercise.name, listId: thisExerciseList }}">
+                <i class="fa-solid fa-caret-right"></i>
+            </RouterLink> 
+            <span v-else>Complete</span>
+        </div>
     </div>
 </template>
 
@@ -148,7 +177,18 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.back-list{
+    display: flex;
+    justify-content: space-between;
 
+    a{
+        background: linear-gradient(90deg, #cc3700, #d4523a, #d8653e);
+        padding: 3px 15px;
+        border-radius: 5px;
+        color: gold;
+        text-decoration: none;
+    }
 }
 
 ul{
@@ -191,9 +231,6 @@ ul{
         }
     }
 }
-.serie-length{
-    text-align: right;
-}
 .add-wrapper-serie{
     text-align: right;
     margin-right: 10px;
@@ -212,6 +249,22 @@ ul{
             margin-top: 5px;
             padding: 3px;
             border-radius: 5px;
+        }
+    }
+}
+
+.prev-next{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    a{
+        background-color: #3d3d3d;
+        padding: 2px 12px;
+        border-radius: 5px;
+        color: gold;
+
+        i{
+            font-size: 2.5rem;
         }
     }
 }

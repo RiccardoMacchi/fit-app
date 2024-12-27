@@ -86,6 +86,7 @@ li{
     a{
         text-decoration: none;
         color: white;
+        flex-grow: 1;
     }
 }
 
