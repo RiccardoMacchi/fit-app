@@ -1,14 +1,24 @@
 workflows:
   ios:
     name: iOS Build
-    max_build_duration: 60 # durata massima per la build (in minuti)
+    max_build_duration: 60
     environment:
       vars:
         NODE_VERSION: 16 # Specifica la versione di Node.js
     scripts:
+      - name: Install Node.js
+        script: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+          source ~/.nvm/nvm.sh
+          nvm install $NODE_VERSION
       - name: Install Dependencies
         script: |
           npm install
+      - name: Build Web Assets
+        script: |
+          npm run build
+      - name: Sync Capacitor
+        script: |
           npx cap sync ios
       - name: Build iOS App
         script: |
