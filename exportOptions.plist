@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0">
-  <dict>
+<dict>
     <key>method</key>
-    <string>development</string> <!-- Metodo di esportazione senza firma -->
+    <string>development</string>
     <key>signingStyle</key>
-    <string>manual</string> <!-- Firma manuale disabilitata -->
+    <string>manual</string>
+    <key>teamID</key>
+    <string></string> <!-- Vuoto per evitare l'errore "No Team Found in Archive" -->
+    <key>iOSDeploymentTarget</key>
+    <string>12.0</string>
     <key>provisioningProfiles</key>
     <dict/>
-  </dict>
+</dict>
 </plist>
