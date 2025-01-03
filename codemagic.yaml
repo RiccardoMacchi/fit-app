@@ -5,7 +5,7 @@ workflows:
     environment:
       vars:
         NODE_VERSION: 16
-        DEVELOPMENT_TEAM: YOUR_TEAM_ID # Sostituisci con il tuo Team ID Apple (puoi anche ometterlo)
+        DEVELOPMENT_TEAM: ""  # Lascia vuoto, non è necessario se non firmi
     scripts:
       - name: Install Node.js
         script: |
@@ -33,16 +33,6 @@ workflows:
                      archive
       - name: Export iOS App to IPA (without signing)
         script: |
-            # Esegui la costruzione dell'IPA senza firma
-            xcodebuild -workspace ios/App/App.xcworkspace \
-                      -scheme App \
-                      -archivePath ios/App/build/App.xcarchive \
-                      -sdk iphoneos \
-                      CODE_SIGNING_REQUIRED=NO \
-                      CODE_SIGN_IDENTITY="" \
-                      CODE_SIGNING_ALLOWED=NO \
-                      archive
-
             # Esporta l'IPA senza firma, senza teamID
             xcodebuild -exportArchive \
                       -archivePath ios/App/build/App.xcarchive \
