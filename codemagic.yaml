@@ -3,17 +3,13 @@ workflows:
     name: iOS Build
     max_build_duration: 60 # durata massima per la build (in minuti)
     environment:
-      flutter: stable
-    steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: |
-            npm install
-            npx cap sync ios
-      - run:
-          name: Build iOS App
-          command: |
-            npx cap build ios --prod --release
-      - upload-artifact:
-          path: ios/App/build/ios/iphoneos/*.ipa
+      vars:
+        NODE_VERSION: 16 # Specifica la versione di Node.js
+    scripts:
+      - name: Install Dependencies
+        script: |
+          npm install
+          npx cap sync ios
+      - name: Build iOS App
+        script: |
+          npx cap build ios --prod --release
