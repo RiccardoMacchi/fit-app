@@ -1,19 +1,12 @@
 workflows:
   ios:
-    name: fit-app
+    name: iOS Build
     max_build_duration: 60 # durata massima per il build (in minuti)
-    instance_type: mac_mini
     environment:
-      flutter: stable
+      vars:
+        FLUTTER_CHANNEL: stable
     steps:
       - checkout # passa al repository
-      - cache:
-          key: ios-dependencies
-          paths:
-            - ios/Pods
-            - ios/.symlinks
-            - ios/Podfile.lock
-            - ios/Pods/Target\ Support\ Files
       - run:
           name: Install Dependencies
           command: |
