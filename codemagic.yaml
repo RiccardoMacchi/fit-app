@@ -39,4 +39,4 @@ workflows:
                      -exportPath $CM_BUILD_DIR/ipa \
                      CODE_SIGNING_REQUIRED=NO \
                      CODE_SIGNING_ALLOWED=NO \
-                     DEVELOPMENT_TEAM="0000000000
+                     DEVELOPMENT_TEAM="0000000000"
