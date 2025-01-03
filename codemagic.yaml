@@ -5,6 +5,7 @@ workflows:
     environment:
       vars:
         NODE_VERSION: 16
+        DEVELOPMENT_TEAM: YOUR_TEAM_ID # Sostituisci con il tuo Team ID Apple
     scripts:
       - name: Install Node.js
         script: |
@@ -22,4 +23,9 @@ workflows:
           npx cap sync ios
       - name: Build iOS App
         script: |
-          npx cap build ios
+          xcodebuild -workspace ios/App/App.xcworkspace \
+                     -scheme App \
+                     -configuration Release \
+                     -archivePath ios/App/build/App.xcarchive \
+                     DEVELOPMENT_TEAM=$DEVELOPMENT_TEAM \
+                     archive
