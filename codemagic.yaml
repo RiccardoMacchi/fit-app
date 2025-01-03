@@ -32,9 +32,13 @@ workflows:
                      CODE_SIGN_IDENTITY="" \
                      CODE_SIGNING_ALLOWED=NO \
                      archive
-      - name: Export iOS App to IPA
+      - name: Export iOS App to IPA (without signing)
         script: |
           xcodebuild -exportArchive \
             -archivePath ios/App/build/App.xcarchive \
             -exportOptionsPlist exportOptions.plist \
-            -exportPath $CM_BUILD_DIR/ipa
+            -exportPath $CM_BUILD_DIR/ipa \
+            DEVELOPMENT_TEAM=$DEVELOPMENT_TEAM \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            SIGN_IDENTITY=""
