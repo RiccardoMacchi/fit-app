@@ -5,7 +5,7 @@ workflows:
     environment:
       vars:
         NODE_VERSION: 16
-        DEVELOPMENT_TEAM: YOUR_TEAM_ID # Sostituisci con il tuo Team ID Apple
+        DEVELOPMENT_TEAM: YOUR_TEAM_ID # Sostituisci con il tuo Team ID Apple (puoi anche ometterlo)
     scripts:
       - name: Install Node.js
         script: |
@@ -21,11 +21,17 @@ workflows:
       - name: Sync Capacitor
         script: |
           npx cap sync ios
-      - name: Build iOS App
+      - name: Build iOS App (without signing)
         script: |
           xcodebuild -workspace ios/App/App.xcworkspace \
                      -scheme App \
                      -configuration Release \
                      -archivePath ios/App/build/App.xcarchive \
                      DEVELOPMENT_TEAM=$DEVELOPMENT_TEAM \
+                     -allowProvisioningUpdates \
+                     -sdk iphoneos \
+                     -configuration Release \
+                     CODE_SIGNING_REQUIRED=NO \
+                     CODE_SIGN_IDENTITY="" \
+                     CODE_SIGNING_ALLOWED=NO \
                      archive
