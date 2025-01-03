@@ -1,0 +1,28 @@
+workflows:
+  ios:
+    name: fit-app
+    max_build_duration: 60 # durata massima per il build (in minuti)
+    instance_type: mac_mini
+    environment:
+      flutter: stable
+    steps:
+      - checkout # passa al repository
+      - cache:
+          key: ios-dependencies
+          paths:
+            - ios/Pods
+            - ios/.symlinks
+            - ios/Podfile.lock
+            - ios/Pods/Target\ Support\ Files
+      - run:
+          name: Install Dependencies
+          command: |
+            npm install
+            npx cap sync ios
+      - run:
+          name: Build iOS app
+          command: |
+            npx cap build ios --prod --release
+      - upload-artifact:
+          name: iOS app
+          path: ios/App/build/ios/iphoneos/*.ipa
