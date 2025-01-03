@@ -3,12 +3,14 @@
 <dict>
     <key>method</key>
     <string>development</string>
-    <key>signingStyle</key>
-    <string>manual</string>
     <key>teamID</key>
-    <string></string> <!-- Vuoto per evitare l'errore "No Team Found in Archive" -->
-    <key>iOSDeploymentTarget</key>
-    <string>12.0</string>
+    <string></string>  <!-- Lascia vuoto il teamID -->
+    <key>compileBitcode</key>
+    <true/>
+    <key>signingStyle</key>
+    <string>manual</string>  <!-- Usa manuale per evitare la firma automatica -->
+    <key>signingCertificate</key>
+    <string>iOS Developer</string>
     <key>provisioningProfiles</key>
     <dict/>
 </dict>
