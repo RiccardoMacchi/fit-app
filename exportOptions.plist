@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0">
-    <dict>
-        <key>method</key>
-        <string>development</string>
-        <key>destination</key>
-        <string>export</string>
-    </dict>
+  <dict>
+    <key>method</key>
+    <string>development</string>
+    <key>signingStyle</key>
+    <string>manual</string>
+    <key>provisioningProfiles</key>
+    <dict/>
+    <key>teamID</key>
+    <string></string> <!-- Lascia vuoto per evitare problemi con il team -->
+  </dict>
 </plist>
