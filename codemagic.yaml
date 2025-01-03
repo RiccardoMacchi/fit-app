@@ -32,3 +32,9 @@ workflows:
                      CODE_SIGN_IDENTITY="" \
                      CODE_SIGNING_ALLOWED=NO \
                      archive
+      - name: Export iOS App to IPA
+        script: |
+          xcodebuild -exportArchive \
+            -archivePath ios/App/build/App.xcarchive \
+            -exportOptionsPlist exportOptions.plist \
+            -exportPath $CM_BUILD_DIR/ipa
