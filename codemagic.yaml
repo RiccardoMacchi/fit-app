@@ -1,10 +1,9 @@
 workflows:
   ios:
     name: iOS Build
-    max_build_duration: 60
+    max_build_duration: 60 # durata massima per la build (in minuti)
     environment:
-      vars:
-        FLUTTER_CHANNEL: stable
+      flutter: stable
     steps:
       - checkout
       - run:
@@ -13,9 +12,8 @@ workflows:
             npm install
             npx cap sync ios
       - run:
-          name: Build iOS app
+          name: Build iOS App
           command: |
             npx cap build ios --prod --release
       - upload-artifact:
-          name: iOS app
           path: ios/App/build/ios/iphoneos/*.ipa
