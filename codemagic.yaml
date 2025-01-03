@@ -5,7 +5,7 @@ workflows:
     environment:
       vars:
         NODE_VERSION: 16
-        DEVELOPMENT_TEAM: ""  # Lascia vuoto, non è necessario se non firmi
+        # DEVELOPMENT_TEAM: ""  # Rimuovi o commenta questa riga se non hai bisogno di un team ID
     scripts:
       - name: Install Node.js
         script: |
