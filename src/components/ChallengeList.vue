@@ -45,7 +45,7 @@ export default{
             <div class="challenge-list" v-if="challenges.length">
                 <RouterLink  v-for="challenge in challenges" :to="{name: 'Challenge', params:{id: challenge.name}}">
                         <h3>{{ challenge.name }}</h3>
-                        <span><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i> {{ challenge.duration - challenge.dayDone.length }}gg</span>
+                        <span><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i> <span class="day-left">{{ challenge.duration - challenge.dayDone.length }}gg</span></span>
                 </RouterLink>
             </div>
             <h4 v-else>Aggiungi subito delle challenge</h4>
@@ -96,6 +96,11 @@ export default{
         i{
             color: greenyellow;
         }
+    }
+    .day-left{
+        display: inline-block;
+        width: 40px;
+        text-align: right;
     }
 }
 

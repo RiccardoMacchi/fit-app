@@ -1,19 +1,20 @@
 <script>
-import challenges from '../data/data.json';
+import data from '../data/data.json';
 
 export default{
     name: 'Challenge',
     data(){
         return{
             challengeName: '',
-            challenges: challenges.challenges,
+            challenges: data.challenges,
+            challengeDone: data.profile.challengeListDone,
             challenge: {
 
             },
             challengeDayDone: [],
             isCheating: false,
             isLoading: true,
-        }
+        }   
     },
     methods:{
         saveToLocalStorage() {
@@ -29,7 +30,8 @@ export default{
             });
         },
         completeDay(i){
-            if(i - this.challengeDayDone[this.challengeDayDone.length - 1] === 1 || i - this.challengeDayDone[this.challengeDayDone.length - 1] === 0 || this.challengeDayDone.length === 0){
+            console.log(this.challengeDayDone.length)
+            if(i - this.challengeDayDone[this.challengeDayDone.length - 1] === 1 || i - this.challengeDayDone[this.challengeDayDone.length - 1] === 0 || (!this.challengeDayDone.length && i === 1)){
                 if(!this.challengeDayDone.includes(i)){
                     this.challengeDayDone.push(i)
                     this.challenge.dayDone = this.challengeDayDone
@@ -42,6 +44,26 @@ export default{
                     this.saveToLocalStorage()
                     this.isCheating = false
                 }
+
+                if(this.challengeDayDone.length === this.challenge.duration){
+                    const newDate = new Date()
+                    const formattedDate = newDate.toLocaleDateString('it-IT', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    })
+                    if(!this.challengeDone.some(el => el.name === this.challenge.name || el.date === formattedDate)){
+                        const newChalDone = {
+                            name: this.challenge.name,
+                            date: formattedDate
+                        }
+                        this.challengeDone.push(newChalDone)
+                        console.log('pushed')
+                        const savedProfile = JSON.parse(localStorage.getItem('profile')) || { data: {}, exerciseListDone: [], challengeListDone: []  };
+                        savedProfile.challengeListDone = this.challengeDone;
+                        localStorage.setItem('profile', JSON.stringify(savedProfile));
+                    }
+                }
             } else {
                 console.log('non si saltano i giorni')
                 this.isCheating = true
@@ -53,7 +75,8 @@ export default{
         if (savedData) {
             this.challenges = JSON.parse(savedData)
         } else {
-            this.challenges = challenges.challenges
+            this.challenges = data.challenges
+            this.profileData = data.profile.challengeListDone
             this.saveToLocalStorage();
         }
         this.challengeName = this.$route.params.id

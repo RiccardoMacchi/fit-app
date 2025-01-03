@@ -1,12 +1,13 @@
 <script>
-import exerciseCards from '../data/data.json';
+import data from '../data/data.json';
 import Timer from './Timer.vue';
 
 export default {
     name: 'Exercise',
     data(){
         return{
-            exerciseCards: exerciseCards.exerciseCards,
+            exerciseCards: data.exerciseCards,
+            exerciseListDone:  [],
             thisExercise: '',
             thisExerciseList: '',
             exercise: {},
@@ -38,10 +39,7 @@ export default {
         },
 
         saveToLocalStorage() {
-            // console.log(this.exerciseCards)
             localStorage.setItem('exerciseCards', JSON.stringify(this.exerciseCards))
-            // console.log(this.exerciseCards)
-
         },
         addReps(i) {
             if(this.exercise.series[i].reps >= 0){
@@ -72,22 +70,51 @@ export default {
             this.saveToLocalStorage()
         },
         completeSerie(i) {
-        const index = this.selectedSeriesIndices.indexOf(i)
-        if (index === -1) {
-            this.selectedSeriesIndices.push(i)
-        } else {
-            this.selectedSeriesIndices.splice(index, 1)
+            const index = this.selectedSeriesIndices.indexOf(i)
+            if (index === -1) {
+                this.selectedSeriesIndices.push(i)
+            } else {
+                this.selectedSeriesIndices.splice(index, 1)
+            }
+        },
+        completeScheda(){
+            const newDate = new Date()
+            const formattedDate = newDate.toLocaleDateString('it-IT', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            if(!this.exerciseListDone.some( el => el.name === this.thisExerciseList && el.date === formattedDate)){
+                const newExDone = {
+                    name: this.thisExerciseList,
+                    date: formattedDate
+                }
+                this.exerciseListDone.push(newExDone)
+                
+                const savedProfile = JSON.parse(localStorage.getItem('profile')) || { data: {}, exerciseListDone: [] };
+                savedProfile.exerciseListDone = this.exerciseListDone;
+                localStorage.setItem('profile', JSON.stringify(savedProfile));
+            } else{
+                console.log('già presente')
+            }
         }
-    },
     },
     mounted(){
         const savedData = localStorage.getItem('exerciseCards')
         if (savedData) {
             this.exerciseCards = JSON.parse(savedData)
         } else {
-            this.exerciseCards = exerciseCards.exerciseCards
+            this.exerciseCards = data.exerciseCards
             this.saveToLocalStorage();
         }
+
+        const savedProfile = localStorage.getItem('profile');
+        if (savedProfile) {
+            this.exerciseListDone = JSON.parse(savedProfile).exerciseListDone;
+        } else {
+            this.exerciseListDone = [];
+        }
+
         this.thisExercise = this.$route.params.id
         this.thisExerciseList = this.$route.params.listId
         this.actualEx(this.thisExerciseList, this.thisExercise)
@@ -166,7 +193,7 @@ export default {
             <RouterLink v-if="nextExercise" :to="{name:'Exercise', params:{id: nextExercise.name, listId: thisExerciseList }}">
                 <i class="fa-solid fa-caret-right"></i>
             </RouterLink> 
-            <span v-else>Complete</span>
+            <span class="btn-complete" v-else @click="completeScheda()"><i class="fa-regular fa-floppy-disk"></i></span>
         </div>
     </div>
 </template>
@@ -266,6 +293,13 @@ ul{
         i{
             font-size: 2.5rem;
         }
+    }
+    .btn-complete{
+        font-size: 1rem;
+        padding: 10px 25px;
+        background-color: #3d3d3d;
+        border-radius: 5px;
+        color: gold;
     }
 }
 

@@ -92,10 +92,10 @@ export default{
     </div>
     <div v-else class="container">
         <div class="title">
-            <h1>{{ mealName }}</h1>
+            <h1>{{ mealName.toUpperCase() }}</h1>
             <div class="list-diet">
                 <RouterLink :to="{name: 'Cookbook'}">
-                    <i class="fa-solid fa-utensils"></i>
+                    <i class="fa-solid fa-backward"></i>
                 </RouterLink>
             </div>
         </div>
@@ -104,7 +104,10 @@ export default{
                 <h4>Piatti a disposizione: {{ meal.dishes.length }}</h4>
                 <li v-for="(dish, i) in meal.dishes">
                     <div class="title-dish">
-                        <h3>{{ dish.name }}</h3>
+                        <div>
+                            <i class="fa-solid fa-utensils"></i>
+                            <h3>{{ dish.name }}</h3>
+                        </div>
                         <span @click="removeDish(i)"><i class="fa-solid fa-trash"></i></span>
                     </div>
                     <div class="ingredients">
@@ -177,6 +180,14 @@ li{
 .title-dish{
     display: flex;
     justify-content: space-between;
+    i{
+        font-size: 1.5rem;
+        color: #7e7e7e;
+    }
+    h3{
+        display: inline-block;
+        margin-left: 15px;
+    }
 }
 
 .add-dish{
@@ -186,6 +197,7 @@ li{
         padding: 5px;
         border-radius: 5px;
         background-color: #444;
+        margin: 10px auto;
     }
     .btn-add{
         margin-top: 10px;

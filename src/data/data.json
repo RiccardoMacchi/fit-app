@@ -426,6 +426,19 @@
         ]
       }
     ],
+    "profile":{
+        "data":{
+            "username": "",
+            "dateOfBirth": "",
+            "weight": null
+        },
+        "exerciseListDone":[
+    
+        ],
+        "challengeListDone":[
+            
+        ]
+    },
     "diet": [
         {
             "cookbook": [
@@ -558,7 +571,5 @@
             "dayDone": []
         }
     ]
-
-
 }
   

@@ -8,7 +8,7 @@ export default{
 
 <template>
     <div>
-        <RouterLink :to="{name:'Home'}">
+        <RouterLink :to="{name:'Profile'}">
             <img src="../../../public/logo-fit-app.png" alt="Home">
         </RouterLink>
         <ul>
@@ -28,6 +28,7 @@ div{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
+    z-index: 1000;
     ul{
         line-height: 60px;
         display: flex;
