@@ -2,12 +2,10 @@
 <plist version="1.0">
   <dict>
     <key>method</key>
-    <string>development</string>
+    <string>development</string> <!-- Metodo di esportazione senza firma -->
     <key>signingStyle</key>
-    <string>manual</string>
+    <string>manual</string> <!-- Firma manuale disabilitata -->
     <key>provisioningProfiles</key>
     <dict/>
-    <key>teamID</key>
-    <string></string> <!-- Lascia vuoto per evitare problemi con il team -->
   </dict>
 </plist>
