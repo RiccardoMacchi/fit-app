@@ -25,12 +25,9 @@ workflows:
         script: |
           xcodebuild -workspace ios/App/App.xcworkspace \
                      -scheme App \
-                     -configuration Release \
                      -archivePath ios/App/build/App.xcarchive \
                      DEVELOPMENT_TEAM=$DEVELOPMENT_TEAM \
-                     -allowProvisioningUpdates \
                      -sdk iphoneos \
-                     -configuration Release \
                      CODE_SIGNING_REQUIRED=NO \
                      CODE_SIGN_IDENTITY="" \
                      CODE_SIGNING_ALLOWED=NO \
