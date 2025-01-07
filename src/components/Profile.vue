@@ -19,7 +19,7 @@ export default {
                 data: {
                     username: this.profileUsername,
                     dateOfBirth: this.profileDateOfBirth,
-                    weight: parsInt(this.profileWeight)
+                    weight: parseInt(this.profileWeight)
                 },
                 exerciseListDone: this.profileData.exerciseListDone,
                 challengeListDone: this.profileData.challengeListDone
@@ -75,18 +75,21 @@ export default {
     <div v-else class="container">
         <h1>Profilo</h1>
         <div class="profile-info">
-            <h2>Dati Personali</h2>
-            <p v-if="profileData.data.username">Nome: {{ profileData.data.username }}</p>
+            <h2>Informazioni Personali</h2>
+            <div class="img-profile">
+                <img src="../../public/luna-mercurio-leone.webp" alt="">
+            </div>
+            <p v-if="profileData.data.username">Nome: <span>{{ profileData.data.username }}</span></p>
             <div v-else>
                 <label for="name">Nome:</label>
                 <input type="text" name="name" v-model="profileUsername">
             </div>
-            <p v-if="profileData.data.dateOfBirth">Data di nascita: {{ profileData.data.dateOfBirth }}</p>
+            <p v-if="profileData.data.dateOfBirth">Data di nascita: <span>{{ profileData.data.dateOfBirth }}</span></p>
             <div v-else>
                 <label for="name">Data di nascita:</label>
                 <input type="date" name="dateOfBirth" v-model="profileDateOfBirth">
             </div>
-            <p v-if="profileData.data.weight">Peso: {{ profileData.data.weight }}</p>
+            <p v-if="profileData.data.weight">Peso: <span>{{ profileData.data.weight }}</span></p>
             <div v-else>
                 <label for="name">Peso:</label>
                 <input type="number" step="0.1" name="weight" v-model="profileWeight">
@@ -96,6 +99,8 @@ export default {
                 <span v-else @click="modProfileData()"><i class="fa-solid fa-pencil"></i></span>
             </div>
         </div>
+        <h3>Monitora i tuoi progressi</h3>
+        <div class="line"></div>
         <div v-if="profileData.exerciseListDone.length" class="list-ex-done">
             <h2>Lista Esercizi Completati</h2>
             <ul>
@@ -108,6 +113,7 @@ export default {
         <div class="no-list" v-else>
             <h5>Ancora nessuna scheda completata</h5>
         </div>
+        <div class="line"></div>
         <div v-if="profileData.challengeListDone.length" class="list-challenge-done">
             <h2>Lista Challenge Completate</h2>
             <ul>
@@ -125,7 +131,6 @@ export default {
 
 <style lang="scss" scoped>
 .profile-info{
-    position: relative;
 
     input{
         width: 100%;
@@ -134,19 +139,50 @@ export default {
         background-color: #444;
     }
     .btn-save-mod{
-        position: absolute;
-        top: 20px;
-        right: 0px;
-        transform: translate(-50%,-50%);
+        text-align: right;
+        margin-top: 10px;
 
         span{
-            padding: 5px 10px;
+            padding: 5px 15px;
             background: linear-gradient(135deg, #f7c788, #e89b42, #c55732);
             color: black;
             border-radius: 5px;
         }
     }
+    .img-profile{
+        margin: 5px;
+        img{
+            border-radius: 10px;
+            width: 100%;
+        }
+    }
 }
+p{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+h3{
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(to right, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin: 15px auto;
+}
+
+.line{
+    width: 60%;
+    margin: 0 auto;
+    background: linear-gradient(to left, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
+    height: 2px;
+    margin: 20px auto;
+
+}
+
 .list-challenge-done,
 .list-ex-done{
     li{

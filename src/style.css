@@ -30,3 +30,14 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: linear-gradient(to right, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin: 15px auto;
+}

@@ -45,7 +45,13 @@ export default{
             <div class="challenge-list" v-if="challenges.length">
                 <RouterLink  v-for="challenge in challenges" :to="{name: 'Challenge', params:{id: challenge.name}}">
                         <h3>{{ challenge.name }}</h3>
-                        <span><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i> <span class="day-left">{{ challenge.duration - challenge.dayDone.length }}gg</span></span>
+                        <div v-if="challenge.duration - challenge.dayDone.length">
+                            <span><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i> <span class="day-left">{{ challenge.duration - challenge.dayDone.length }}gg</span></span>
+                        </div>
+                        <div v-else class="challenge-complete">
+                            COMPLETATA 
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
                 </RouterLink>
             </div>
             <h4 v-else>Aggiungi subito delle challenge</h4>
@@ -75,7 +81,17 @@ export default{
 
 <style lang="scss" scoped>
 .challenge-list{
-
+    .challenge-complete{
+        color: green;
+        font-weight: 600;
+        i{
+            font-weight: bold;
+            background: linear-gradient(to right, yellow, orange, red);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-right: 5px;
+        }
+    }
     a{
         display: block;
         text-decoration: none;

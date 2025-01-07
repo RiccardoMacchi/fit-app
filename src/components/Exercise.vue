@@ -17,6 +17,8 @@ export default {
             listId: null,
             selectedSeriesIndices: [],
             noteEx : '',
+            isSaved: false,
+            isAlreadySaved: false
         }
     },
     components:{
@@ -94,8 +96,12 @@ export default {
                 const savedProfile = JSON.parse(localStorage.getItem('profile')) || { data: {}, exerciseListDone: [] };
                 savedProfile.exerciseListDone = this.exerciseListDone;
                 localStorage.setItem('profile', JSON.stringify(savedProfile));
+                this.isSaved = true
+                this.isAlreadySaved = false
             } else{
                 console.log('già presente')
+                this.isSaved = false
+                this.isAlreadySaved = true
             }
         }
     },
@@ -195,10 +201,17 @@ export default {
             </RouterLink> 
             <span class="btn-complete" v-else @click="completeScheda()"><i class="fa-regular fa-floppy-disk"></i></span>
         </div>
+        <div class="is-saved">
+            <h4 v-show="isSaved" class="saved">Scheda completata e salvata!!</h4>
+            <h4 v-show="isAlreadySaved" class="already-saved">Scheda già salvata oggi!!</h4>
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
+h1{
+    font-size: 1.8rem;
+}
 .header-ex{
     margin: 20px 0;
     display: flex;
@@ -254,6 +267,9 @@ ul{
             }
             .n-reps{
                 margin: 0px 5px;
+                display: inline-block;
+                text-align: center;
+                width: 25px;
             }
         }
     }
@@ -300,6 +316,18 @@ ul{
         background-color: #3d3d3d;
         border-radius: 5px;
         color: gold;
+    }
+}
+.is-saved{
+    text-align: center;
+    margin-top: 10px;
+
+    .saved{
+        color: green;
+    }
+
+    .already-saved{
+        color: red;
     }
 }
 

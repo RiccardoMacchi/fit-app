@@ -234,6 +234,7 @@ li{
 .title{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 5px auto;
     .list-diet{
         text-align: center;
@@ -241,7 +242,7 @@ li{
         border-radius: 5px;
         font-weight: 600;
         position: relative;
-        padding: 3px 25px;
+        padding: 20px 30px;
         a{
             color: black;
             text-decoration: none;

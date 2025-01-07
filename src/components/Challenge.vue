@@ -52,16 +52,16 @@ export default{
                         month: '2-digit',
                         year: 'numeric'
                     })
-                    if(!this.challengeDone.some(el => el.name === this.challenge.name || el.date === formattedDate)){
+                    if(!this.challengeDone.some(el => el.name === this.challenge.name && el.date === formattedDate)){
                         const newChalDone = {
                             name: this.challenge.name,
                             date: formattedDate
                         }
                         this.challengeDone.push(newChalDone)
                         console.log('pushed')
-                        const savedProfile = JSON.parse(localStorage.getItem('profile')) || { data: {}, exerciseListDone: [], challengeListDone: []  };
-                        savedProfile.challengeListDone = this.challengeDone;
-                        localStorage.setItem('profile', JSON.stringify(savedProfile));
+                        const savedProfile = JSON.parse(localStorage.getItem('profile')) || { data: {}, exerciseListDone: [], challengeListDone: []  }
+                        savedProfile.challengeListDone.push(this.challengeDone)
+                        localStorage.setItem('profile', JSON.stringify(savedProfile))
                     }
                 }
             } else {
@@ -102,8 +102,8 @@ export default{
             </div>
         </div>
         <div class="challenge-complete" v-if="challengeDayDone.length === challenge.duration">
-            <h5>Challenge completata</h5>
-            <RouterLink :to="{name: 'ChallengeList'}">Torna alle Challenges</RouterLink>
+            <h5>Challenge completata!</h5>
+            <RouterLink :to="{name: 'ChallengeList'}">Torna alle Challenges <i class="fa-solid fa-arrow-left"></i></RouterLink>
         </div>
     </div>
 </template>
@@ -144,7 +144,7 @@ export default{
     background: linear-gradient(45deg, #ffd700, #ffc107, #ff8c00);
     color: black;
     padding: 30px;
-    width: 80%;
+    width: 90%;
     text-align: center;
     top: 50%;
     left: 50%;
@@ -154,6 +154,10 @@ export default{
     a{
         color: black;
         text-decoration: none;
+    }
+    h5{
+        margin-bottom: 10px;
+        font-size: 1.3rem;
     }
 }
 
