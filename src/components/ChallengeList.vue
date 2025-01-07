@@ -60,16 +60,16 @@ export default{
             <form action="">
                 <h2>Aggiungi una nuova Challenge</h2>
                 <div>
-                    <label for="">Nome Challenge:</label>
-                    <input type="text" v-model="newChallengeName">
+                    <label for="name">Nome Challenge:</label>
+                    <input type="text" id="name" v-model="newChallengeName">
                 </div>
                 <div>
-                    <label for="">Durata in gg:</label>
-                    <input type="number" v-model="newChallengeDuration">
+                    <label for="duration">Durata in gg:</label>
+                    <input type="number" id="duration" v-model="newChallengeDuration">
                 </div>
                 <div>
-                    <label for="">Regole:</label>
-                    <textarea name="" rows="4" id="" v-model="newChallengeRules"></textarea>
+                    <label for="rules">Regole:</label>
+                    <textarea rows="4" id="rules" v-model="newChallengeRules"></textarea>
                 </div>
                 <div class="wrap-add">
                     <span class="add-challenge" @click="addChallenge()">Aggiungi</span>

@@ -82,17 +82,17 @@ export default {
             <p v-if="profileData.data.username">Nome: <span>{{ profileData.data.username }}</span></p>
             <div v-else>
                 <label for="name">Nome:</label>
-                <input type="text" name="name" v-model="profileUsername">
+                <input type="text" id="name" v-model="profileUsername">
             </div>
             <p v-if="profileData.data.dateOfBirth">Data di nascita: <span>{{ profileData.data.dateOfBirth }}</span></p>
             <div v-else>
-                <label for="name">Data di nascita:</label>
-                <input type="date" name="dateOfBirth" v-model="profileDateOfBirth">
+                <label for="dateOfBirth">Data di nascita:</label>
+                <input type="date" id="dateOfBirth" v-model="profileDateOfBirth">
             </div>
-            <p v-if="profileData.data.weight">Peso: <span>{{ profileData.data.weight }}</span></p>
+            <p v-if="profileData.data.weight">Peso: <span>{{ profileData.data.weight }}kg</span></p>
             <div v-else>
-                <label for="name">Peso:</label>
-                <input type="number" step="0.1" name="weight" v-model="profileWeight">
+                <label for="weight">Peso:</label>
+                <input type="number" step="0.1" id="weight" v-model="profileWeight">
             </div>
             <div class="btn-save-mod">
                 <span v-if="!allData()" @click="saveProfileData()"><i class="fa-solid fa-cloud-arrow-up"></i></span>

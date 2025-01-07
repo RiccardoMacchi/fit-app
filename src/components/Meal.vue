@@ -129,12 +129,12 @@ export default{
         <div class="add-dish">
             <div>
                 <label for="name">Nome piatto:</label>
-                <input class="input-name" type="text" v-model="newDishName" placeholder="Nome nuovo piatto">
+                <input class="input-name" id="name" type="text" v-model="newDishName" placeholder="Nome nuovo piatto">
             </div>
             <div>
                 <label for="ingredients">Ingredienti:</label>
                 <div class="search-bar">
-                    <input type="text" v-model="newIngredient" @keyup.enter="addIngredients()" placeholder="Inserisci e aggiungi ogni igrediente">
+                    <input type="text" id="ingredients" v-model="newIngredient" @keyup.enter="addIngredients()" placeholder="Inserisci e aggiungi ogni igrediente">
                     <span class="add-ico" @click="addIngredients()"><i class="fa-solid fa-plus"></i></span>
                 </div>
                 <span class="bedge" v-for="ingredient in newIngredients">{{ ingredient }}</span>
@@ -142,7 +142,7 @@ export default{
             </div>
             <div>
                 <label for="prep">Preparazione:</label>
-                <textarea name="prep" rows="6" v-model="newPreparation" placeholder="Scrivi i passaggi per la preparazione"></textarea>
+                <textarea id="prep" rows="6" v-model="newPreparation" placeholder="Scrivi i passaggi per la preparazione"></textarea>
             </div>
             <div class="btn-add">
                 <h5 v-show="errorNewDish" class="error">Aggiungi almeno il nome del piatto!</h5>
