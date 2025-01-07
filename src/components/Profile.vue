@@ -101,7 +101,7 @@ export default {
         </div>
         <h3>Monitora i tuoi progressi</h3>
         <div class="line"></div>
-        <div v-if="profileData.exerciseListDone.length" class="list-ex-done">
+        <div v-if="profileData.exerciseListDone && profileData.exerciseListDone.length" class="list-ex-done">
             <h2>Lista Esercizi Completati</h2>
             <ul>
                 <li><h5>Nome Scheda:</h5><h5>Data:</h5></li>
@@ -114,7 +114,7 @@ export default {
             <h5>Ancora nessuna scheda completata</h5>
         </div>
         <div class="line"></div>
-        <div v-if="profileData.challengeListDone.length" class="list-challenge-done">
+        <div v-if="profileData.challengeListDone && profileData.challengeListDone.length" class="list-challenge-done">
             <h2>Lista Challenge Completate</h2>
             <ul>
                 <li><h5>Nome Scheda:</h5><h5>Data:</h5></li>

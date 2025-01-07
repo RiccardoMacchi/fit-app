@@ -9,10 +9,10 @@
             "description": "Trazioni con pausa per aumentare la forza massima.",
             "pause": "2'30''",
             "series": [
-              { "reps": 1 },
+              { "reps": 1, "done" : false },
               { "reps": 1 },
               { "reps": 1 }
-            ]
+            ]            
           },
           {
             "name": "Pull up + loop media",

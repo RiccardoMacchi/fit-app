@@ -15,7 +15,6 @@ export default {
             nextExercise: {},
             isLoading: true,
             listId: null,
-            selectedSeriesIndices: [],
             noteEx : '',
             isSaved: false,
             isAlreadySaved: false
@@ -26,16 +25,16 @@ export default {
     },
     methods:{
         actualEx(id, exName) {
-            const list = this.exerciseCards.find(list => list.name === id);
+            const list = this.exerciseCards.find(list => list.name === id)
 
             if (list) {
-            const index = list.exercises.findIndex(ex => ex.name === exName);
+            const index = list.exercises.findIndex(ex => ex.name === exName)
 
             if (index !== -1) {
                 this.exercise = { ...list.exercises[index] };
-                this.prevExercise = index > 0 ? { ...list.exercises[index - 1] } : null;
-                this.nextExercise = index < list.exercises.length - 1 ? { ...list.exercises[index + 1] } : null;
-                this.isLoading = false;
+                this.prevExercise = index > 0 ? { ...list.exercises[index - 1] } : null
+                this.nextExercise = index < list.exercises.length - 1 ? { ...list.exercises[index + 1] } : null
+                this.isLoading = false
             }
         }
         },
@@ -72,12 +71,8 @@ export default {
             this.saveToLocalStorage()
         },
         completeSerie(i) {
-            const index = this.selectedSeriesIndices.indexOf(i)
-            if (index === -1) {
-                this.selectedSeriesIndices.push(i)
-            } else {
-                this.selectedSeriesIndices.splice(index, 1)
-            }
+            this.exercise.series[i].done = !this.exercise.series[i].done
+            this.saveToLocalStorage()
         },
         completeScheda(){
             const newDate = new Date()
@@ -98,10 +93,27 @@ export default {
                 localStorage.setItem('profile', JSON.stringify(savedProfile));
                 this.isSaved = true
                 this.isAlreadySaved = false
+
+                const list = this.exerciseCards.find(list => list.name === this.thisExerciseList)
+
+                console.log(list)
+                list.exercises.forEach(ex => {
+                    ex.series.forEach(serie =>{
+                        serie.done = false
+                    })
+                });
             } else{
                 console.log('già presente')
                 this.isSaved = false
                 this.isAlreadySaved = true
+
+                const list = this.exerciseCards.find(list => list.name === this.thisExerciseList)
+                console.log(list)
+                list.exercises.forEach(ex => {
+                    ex.series.forEach(serie =>{
+                        serie.done = false
+                    })
+                });
             }
         }
     },
@@ -168,7 +180,9 @@ export default {
             </div>
             <ul>
                 <h4>SERIE E N° RIPETIZIONI</h4>
-                <li @click.prevent="completeSerie(i)" class="ex-list" :class="{'done': selectedSeriesIndices.includes(i)}" v-for="(n, i) in exercise.series" :key="i">
+                <li @click.prevent="completeSerie(i)" class="ex-list" 
+                :class="{'done' : n.done}"
+                v-for="(n, i) in exercise.series" :key="i">
                     <div>
                         <i class="fa-solid fa-trash" @click.stop="removeSerie(i)"></i>
                         <span>
