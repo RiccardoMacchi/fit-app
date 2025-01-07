@@ -116,7 +116,10 @@ export default{
                             {{ ingredients }}
                         </span>
                     </div>
-                    <p><h5>Preparazione:</h5> {{ dish.preparation }}</p>
+                    <div>
+                        <h5>Preparazione:</h5>
+                        <p> {{ dish.preparation }}</p>
+                    </div>
                 </li>
             </ul>
         </div>

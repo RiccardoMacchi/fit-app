@@ -60,7 +60,7 @@ export default{
                         this.challengeDone.push(newChalDone)
                         console.log('pushed')
                         const savedProfile = JSON.parse(localStorage.getItem('profile')) || { data: {}, exerciseListDone: [], challengeListDone: []  }
-                        savedProfile.challengeListDone.push(this.challengeDone)
+                        savedProfile.challengeListDone.push(newChalDone)
                         localStorage.setItem('profile', JSON.stringify(savedProfile))
                     }
                 }
