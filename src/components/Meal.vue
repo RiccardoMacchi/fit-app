@@ -129,12 +129,12 @@ export default{
         <div class="add-dish">
             <div>
                 <label for="name">Nome piatto:</label>
-                <input class="input-name" id="name" type="text" v-model="newDishName" placeholder="Nome nuovo piatto">
+                <input class="input-name" id="name" type="text" v-model="newDishName" placeholder="Inserisci il nome del piatto">
             </div>
             <div>
                 <label for="ingredients">Ingredienti:</label>
                 <div class="search-bar">
-                    <input type="text" id="ingredients" v-model="newIngredient" @keyup.enter="addIngredients()" placeholder="Inserisci e aggiungi ogni igrediente">
+                    <input type="text" id="ingredients" v-model="newIngredient" @keyup.enter="addIngredients()" placeholder="Inserisci e aggiungi ogni ingrediente">
                     <span class="add-ico" @click="addIngredients()"><i class="fa-solid fa-plus"></i></span>
                 </div>
                 <span class="bedge" v-for="ingredient in newIngredients">{{ ingredient }}</span>
@@ -210,26 +210,6 @@ li{
             border-radius: 5px;
             background-color: #2bb62b;
             color: black;
-        }
-    }
-
-    .search-bar{
-        margin: 10px auto;
-        display: flex;
-        justify-content: flex-start;
-        input{
-            padding: 5px;
-            flex-grow: 1;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            background-color: #444;
-        }
-
-        .add-ico{
-            padding: 5px 10px;
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
-            background-color: #248f3b;
         }
     }
 }

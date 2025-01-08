@@ -19,7 +19,7 @@ export default {
                 data: {
                     username: this.profileUsername,
                     dateOfBirth: this.profileDateOfBirth,
-                    weight: parseInt(this.profileWeight)
+                    weight: parseFloat(this.profileWeight)
                 },
                 exerciseListDone: this.profileData.exerciseListDone,
                 challengeListDone: this.profileData.challengeListDone
@@ -79,10 +79,10 @@ export default {
             <div class="img-profile">
                 <img src="../../public/luna-mercurio-leone.webp" alt="">
             </div>
-            <p v-if="profileData.data.username">Nome: <span>{{ profileData.data.username }}</span></p>
+            <p v-if="profileData.data.username">Username: <span>{{ profileData.data.username }}</span></p>
             <div v-else>
-                <label for="name">Nome:</label>
-                <input type="text" id="name" v-model="profileUsername">
+                <label for="username">Username:</label>
+                <input type="text" id="username" v-model="profileUsername" placeholder="Inserisci il tuo Username">
             </div>
             <p v-if="profileData.data.dateOfBirth">Data di nascita: <span>{{ profileData.data.dateOfBirth }}</span></p>
             <div v-else>
@@ -92,7 +92,7 @@ export default {
             <p v-if="profileData.data.weight">Peso: <span>{{ profileData.data.weight }}kg</span></p>
             <div v-else>
                 <label for="weight">Peso:</label>
-                <input type="number" step="0.1" id="weight" v-model="profileWeight">
+                <input type="number" step="0.1" id="weight" v-model="profileWeight" placeholder="Inserisci il tuo peso in kg">
             </div>
             <div class="btn-save-mod">
                 <span v-if="!allData()" @click="saveProfileData()"><i class="fa-solid fa-cloud-arrow-up"></i></span>
@@ -166,6 +166,7 @@ p{
 
 h3{
     font-weight: bold;
+    font-size: 1.5rem;
     text-transform: uppercase;
     background: linear-gradient(to right, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
     -webkit-background-clip: text;

@@ -59,7 +59,7 @@ export default {
         <h1>Le mie Schede</h1>
         <div>
             <div class="search-bar">
-                <input type="text" v-model="schedaName">
+                <input type="text" v-model="schedaName" placeholder="Aggiungi una nuova scheda">
                 <span @click="addScheda()"><i class="fa-solid fa-plus"></i></span>
             </div>
             <h5 id="added" v-show="isAdded">Scheda aggiunta!</h5>
@@ -103,25 +103,5 @@ h5{
 
 h4{
     text-align: right;
-}
-
-.search-bar{
-    margin: 10px auto;
-    display: flex;
-    justify-content: flex-start;
-    input{
-        padding: 5px;
-        flex-grow: 1;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-        background-color: #444;
-    }
-
-    span{
-        padding: 5px 10px;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        background-color: #248f3b;
-    }
 }
 </style>

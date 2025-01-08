@@ -1,6 +1,6 @@
 {
   "appId": "com.fit.app",
-  "appName": "fit-app",
+  "appName": "FitApp",
   "webDir": "dist",
   "bundledWebRuntime": false
 }

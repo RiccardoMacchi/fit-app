@@ -192,7 +192,7 @@ export default {
                 </div>
                 <div v-else class="pause-set">
                     <div class="set-bar">
-                        <input type="text" placeholder="Inserisci pausa" @keypress.enter="setPause()" v-model="pauseValue">
+                        <input type="text" placeholder="Tempo della pausa" @keypress.enter="setPause()" v-model="pauseValue">
                         <i class="fa-solid fa-stopwatch" @click="setPause()"></i>
                     </div>
                     <span>Es: 2' 30''</span>
@@ -203,7 +203,7 @@ export default {
             <RouterLink :to="{name:'ExerciseList', params:{id: thisExerciseList}}">
                 <i class="fa-solid fa-layer-group"></i>
             </RouterLink>
-            <h3 class="serie-length">N totale di serie: {{ exercise.series.length }}</h3>
+            <h3 class="serie-length">N° tot serie: {{ exercise.series.length }}</h3>
         </div>
         <div>
             <!-- <div>
@@ -279,7 +279,6 @@ h1{
         }
     }
     .pause-set{
-        text-align: center;
         .set-bar {
             width: 70%;
             margin: 0 auto;
@@ -305,9 +304,11 @@ h1{
             }
         }
 
-
         span{
             display: block;
+            width: 70%;
+            margin: 0 auto;
+            text-align: left;
             font-size: 0.8rem;
             color: grey;
         }
@@ -329,18 +330,19 @@ h1{
 ul{
     margin: 10px auto;
     border-top: 1px solid grey;
+    h4{
+        margin: 5px auto;
+        font-size: 1.1rem;
+    }
     li{
         list-style: none;
         padding: 2px 4px;
-        margin: 1.5px auto;
+        margin: 2px auto;
         border-radius: 5px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         line-height: 36px;
-        &.done{
-            background-color: green;
-        }
 
         .info{
             font-size: 0.7rem;

@@ -8,7 +8,7 @@ export default {
         return{
             exerciseCards: exerciseCards.exerciseCards,
             exerciseListName: '',
-            exercises: {},
+            exercises: [],
             isLoading: true,
             isAdded: false,
             isNotAdded: false,
@@ -54,6 +54,12 @@ export default {
                     this.exercises = list.exercises
                 }
             })
+        },
+        checkAllDone(i) {
+            if (!this.exercises[i] || !this.exercises[i].series) {
+                return false
+            }
+            return this.exercises[i].series.every(serie => serie.done)
         }
     },
     mounted(){
@@ -66,7 +72,7 @@ export default {
         }
         this.exerciseListName = this.$route.params.id
         this.actualList(this.exerciseListName)
-        console.log(this.exercises)
+        // this.checkAllDone()
     }
 
 }
@@ -77,14 +83,14 @@ export default {
         <h1>{{ exerciseListName }}</h1>
         <div>
             <div class="search-bar">
-                <input type="text" v-model="exName">
+                <input type="text" v-model="exName" placeholder="Aggiungi un nuovo esercizio">
                 <span @click="addExercise()"><i class="fa-solid fa-plus"></i></span>
             </div>
             <h5 id="added" v-show="isAdded">Esercizio aggiunto!</h5>
             <h5 id="error" v-show="isNotAdded">Impossibile aggiungere l'esercizio!</h5>
         </div>
         <ul>
-            <li v-for="(exercie, i) in exercises">
+            <li v-for="(exercie, i) in exercises" :class="{ 'done' : checkAllDone(i) }">
                 <RouterLink :to="{name:'Exercise', params:{id: exercie.name, listId: exerciseListName }}"> {{ exercie.name }} 
                 </RouterLink>
                 <span @click.stop="removeExercise(i)"><i class="fa-solid fa-trash"></i></span>
@@ -116,26 +122,6 @@ h5{
     }
     &#error{
         color: red;
-    }
-}
-
-.search-bar{
-    margin: 10px auto;
-    display: flex;
-    justify-content: flex-start;
-    input{
-        padding: 5px;
-        flex-grow: 1;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-        background-color: #444;
-    }
-
-    span{
-        padding: 5px 10px;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        background-color: #248f3b;
     }
 }
 </style>
