@@ -281,6 +281,8 @@ h1{
     .pause-set{
         text-align: center;
         .set-bar {
+            width: 70%;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             border-radius: 4px;
@@ -294,6 +296,7 @@ h1{
                 padding: 5px;
                 font-size: 1rem;
                 background-color: #303030;
+                width: 100%;
             }
             i {
                 margin-left: 8px;
