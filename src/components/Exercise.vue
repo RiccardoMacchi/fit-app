@@ -191,7 +191,10 @@ export default {
                     <i class="fa-solid fa-pencil" @click="modPause()"></i>
                 </div>
                 <div v-else class="pause-set">
-                    <input type="text" placeholder="Inserisci pausa" @keypress.enter="setPause()" v-model="pauseValue">
+                    <div class="set-bar">
+                        <input type="text" placeholder="Inserisci pausa" @keypress.enter="setPause()" v-model="pauseValue">
+                        <i class="fa-solid fa-stopwatch" @click="setPause()"></i>
+                    </div>
                     <span>Es: 2' 30''</span>
                 </div>
             </div>
@@ -277,10 +280,29 @@ h1{
     }
     .pause-set{
         text-align: center;
-        input{
-            width: 70%;
-            padding: 3px;
+        .set-bar {
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            padding: 5px 10px;
+            background-color: #303030;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            input[type="text"] {
+                flex: 1;
+                border: none;
+                outline: none;
+                padding: 5px;
+                font-size: 1rem;
+                background-color: #303030;
+            }
+            i {
+                margin-left: 8px;
+                color: gold;
+                font-size: 1.2rem;
+            }
         }
+
+
         span{
             display: block;
             font-size: 0.8rem;

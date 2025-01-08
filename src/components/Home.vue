@@ -17,6 +17,7 @@ export default {
             localStorage.setItem('exerciseCards', JSON.stringify(this.exerciseCards))
         },
         addScheda(){
+            console.log(this.exerciseCards)
             const isPresent = this.exerciseCards.some(scheda => scheda.name.toLowerCase().includes(this.schedaName.trim().toLowerCase()))
             if(this.schedaName.trim() !== '' && !isPresent){
                 const newScheda = {
