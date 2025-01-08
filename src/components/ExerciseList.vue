@@ -43,6 +43,7 @@ export default {
             }
         },
         removeExercise(i){
+            console.log(i)
             this.exercises.splice(i, 1)
             this.saveToLocalStorage()
 
@@ -83,7 +84,7 @@ export default {
             <h5 id="error" v-show="isNotAdded">Impossibile aggiungere l'esercizio!</h5>
         </div>
         <ul>
-            <li v-for="exercie in exercises">
+            <li v-for="(exercie, i) in exercises">
                 <RouterLink :to="{name:'Exercise', params:{id: exercie.name, listId: exerciseListName }}"> {{ exercie.name }} 
                 </RouterLink>
                 <span @click.stop="removeExercise(i)"><i class="fa-solid fa-trash"></i></span>
