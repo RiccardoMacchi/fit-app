@@ -8,6 +8,11 @@ export default {
       timerGo: false
     };
   },
+  props:{
+    time:{
+      type: String,
+    }
+  },
   methods: {
     timer() {
       if ((this.minutes > 0 || this.seconds > 0) && !this.timerInterval) {
@@ -23,6 +28,7 @@ export default {
             clearInterval(this.timerInterval)
             this.timerInterval = null
             this.timerGo = false
+            this.setTime()
           }
         }, 1000)
       }
@@ -32,13 +38,32 @@ export default {
       this.timerInterval = null
       this.minutes = 0
       this.seconds = 0
+      this.timerGo = false
+      this.setTime()
     },
+    setTime(){
+      console.log(this.time)
+      const newArrayTime = this.time.split("'")
+      console.log(newArrayTime)
+      this.minutes = parseInt(newArrayTime[0]) || 0
+      this.seconds = parseInt(newArrayTime[1]) || 0
+    }
   },
   computed: {
     getTime() {
       return `${this.minutes}:${this.seconds < 10 ? '0' + this.seconds : this.seconds}`
     },
   },
+  watch: {
+    time: {
+      handler(newValue) {
+        if(!this.timerGo){
+          this.setTime()
+        }
+      },
+      immediate: true
+    }
+  }
 };
 </script>
 
@@ -46,15 +71,20 @@ export default {
     <div id="timer">
       <div v-if="!timerGo">
         <select v-model="minutes" id="minutes">
+            <option :value="0">0</option>
             <option v-for="minute in 5" :key="minute" :value="minute">{{ minute }}</option>
         </select>
         <select v-model="seconds" id="seconds">
+            <option :value="0">0</option>
             <option v-for="second in 59" :key="second" :value="second">{{ second }}</option>
         </select>
         <button @click="timer">START</button>
       </div>
-      <div v-else>
-        <span>{{ getTime }}</span>
+      <div class="else-timer" v-else>
+        <div class="span-wrapper">
+          <span>{{ getTime }}</span>
+        </div>
+        <button id="stop-timer" @click="resetTimer">STOP</button>
       </div>
       </div>
 </template>
@@ -62,6 +92,7 @@ export default {
 <style lang="scss" scoped>
 
 #timer {
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,17 +108,22 @@ export default {
   text-align: center;
 }
 
+#timer .span-wrapper {
+  background-color: #242323;
+  padding: 0px 15px;
+  border: 2px solid #ff4500;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 #timer span {
-  font-size: 3.25rem;
+  font-size: 2rem;
   font-weight: bold;
-  color: #f5f5f5;
   background: linear-gradient(90deg, #ff4500, #ff6347, #ff7f50);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  padding: 5px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  text-align: center;
+  display: block;
 }
 
 #timer select {
@@ -112,6 +148,5 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Effetto ombra ridotto */
   cursor: pointer;
 }
-
 
 </style>

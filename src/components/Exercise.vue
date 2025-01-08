@@ -17,7 +17,8 @@ export default {
             listId: null,
             noteEx : '',
             isSaved: false,
-            isAlreadySaved: false
+            isAlreadySaved: false,
+            pauseValue: ''
         }
     },
     components:{
@@ -115,8 +116,32 @@ export default {
                     })
                 });
             }
-        }
-    },
+        },
+        setPause(){
+            this.exercise.pause = this.pauseValue
+            const list = this.exerciseCards.find(list => list.name === this.thisExerciseList)
+            if (list) {
+                const index = list.exercises.findIndex(ex => ex.name === this.exercise.name)
+                if (index !== -1) {
+                    list.exercises[index].pause = this.pauseValue
+                }
+            }
+            this.saveToLocalStorage()
+            this.pauseValue = ''
+        },
+        modPause(){
+            this.exercise.pause = ''
+            const list = this.exerciseCards.find(list => list.name === this.thisExerciseList)
+            if (list) {
+                const index = list.exercises.findIndex(ex => ex.name === this.exercise.name)
+                if (index !== -1) {
+                    list.exercises[index].pause = this.pauseValue
+                }
+            }
+            this.saveToLocalStorage()
+            this.pauseValue = ''
+            }
+        },
     mounted(){
         const savedData = localStorage.getItem('exerciseCards')
         if (savedData) {
@@ -158,10 +183,18 @@ export default {
         <div class="header-ex">
             <div>
                 <h1>{{  exercise.name.toUpperCase() }}</h1>
-                <h5>Pausa: {{ exercise.pause }}</h5>
+                <div class="timer">
+                    <Timer :time="exercise.pause"/>
+                </div>
+                <div v-if="exercise.pause" class="pause-mod">
+                    <h5>Pausa: {{ exercise.pause }}</h5>
+                    <i class="fa-solid fa-pencil" @click="modPause()"></i>
+                </div>
+                <div v-else class="pause-set">
+                    <input type="text" placeholder="Inserisci pausa" @keypress.enter="setPause()" v-model="pauseValue">
+                    <span>Es: 2' 30''</span>
+                </div>
             </div>
-
-            <Timer/>
         </div>
         <div class="back-list">
             <RouterLink :to="{name:'ExerciseList', params:{id: thisExerciseList}}">
@@ -224,13 +257,36 @@ export default {
 
 <style lang="scss" scoped>
 h1{
-    font-size: 1.8rem;
+    font-size: 2.5rem;
 }
 .header-ex{
     margin: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
+
+    .pause-mod{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.3rem;
+        h5{
+            display: inline-block;
+        }
+        i{
+            color: goldenrod;
+        }
+    }
+    .pause-set{
+        text-align: center;
+        input{
+            width: 70%;
+            padding: 3px;
+        }
+        span{
+            display: block;
+            font-size: 0.8rem;
+            color: grey;
+        }
+    }
 }
 .back-list{
     display: flex;
