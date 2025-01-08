@@ -20,7 +20,7 @@ export default {
             localStorage.setItem('exerciseCards', JSON.stringify(this.exerciseCards))
         },
         addExercise(){
-            const isPresent = this.exercises.some(exercise => exercise.name.includes(this.exName.trim().toLowerCase()))
+            const isPresent = this.exercises.some(exercise => exercise.name.toLowerCase().includes(this.exName.trim().toLowerCase()))
             if(this.exName.trim() !== '' && !isPresent){
                 const newExercise = {
                         name: this.exName.trim(),
