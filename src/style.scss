@@ -1,3 +1,5 @@
+@use './styles/mixin.scss' as *;
+
 *{
   margin: 0;
   padding: 0;
@@ -31,16 +33,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  background: linear-gradient(to right, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-align: center;
-  margin: 15px auto;
-}
 .search-bar span,
 .done{
   background-color: #3A5F0B;
@@ -59,8 +51,139 @@ h1 {
   }
 
   span{
-      padding: 5px 10px;
-      border-top-right-radius: 10px;
-      border-bottom-right-radius: 10px;
+    padding: 5px 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  @include text-yellow;
+  text-align: center;
+  margin: 15px auto;
+}
+
+// Colori testi
+
+.yellow-text {
+  @include text-yellow;
+}
+
+.green-text {
+  @include text-green;
+}
+
+.blue-text {
+  @include text-blue;
+}
+
+.red-text {
+  @include text-red;
+}
+
+.purple-text {
+  @include text-purple;
+}
+
+// Colori
+
+.yellow {
+  color: gold;
+}
+
+.green {
+  color: #00ff00;
+}
+
+.blue {
+  color: #0077ff;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.purple {
+  color: purple;
+}
+
+// Background colori
+
+.yellow-bg {
+  background-color: gold;
+  color: black; 
+}
+
+.green-bg {
+  background-color: #00ff00;
+  color: black;
+}
+
+.blue-bg {
+  background-color: #0077ff;
+  color: black;
+}
+
+.red-bg {
+  background-color: #ff0000;
+  color: white;
+}
+
+.purple-bg {
+  background-color: purple;
+  color: white;
+}
+
+
+// Background colori gradineti
+
+.yellow-bg-linear {
+  background: linear-gradient(to right, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
+  color: black;
+}
+
+.green-bg-linear {
+  background: linear-gradient(to right, #00ff00 0%, #008000 50%, #003300 100%);
+  color: black;
+}
+
+.blue-bg-linear {
+  background: linear-gradient(to right, #0077ff 0%, #0000ff 50%, #001133 100%);
+  color: black;
+}
+
+.red-bg-linear {
+  background: linear-gradient(to right, #ff0000 0%, #b30000 50%, #660000 100%);
+  color: white;
+}
+
+.purple-bg-linear {
+  background: linear-gradient(to right, #da70d6 0%, #800080 50%, #4b0082 100%);
+  color: white;
+}
+
+
+// Background colori gradineti per linee
+
+.yellow-bg-line {
+  background: linear-gradient(to left, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
+}
+
+.green-bg-line {
+  background: linear-gradient(to left, #00ff00 0%, #008000 50%, #003300 100%);
+}
+
+.blue-bg-line {
+  background: linear-gradient(to left, #00d4ff 0%, #0000ff 50%, #001133 100%);
+}
+
+.red-bg-line {
+  background: linear-gradient(to left, #ff0000 0%, #b30000 50%, #660000 100%);
+}
+
+.purple-bg-line {
+  background: linear-gradient(to left, #da70d6 0%, #800080 50%, #4b0082 100%);
 }

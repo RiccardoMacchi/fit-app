@@ -431,7 +431,8 @@
             "username": "",
             "dateOfBirth": "",
             "weight": null,
-            "level": 0
+            "level": 0,
+            "color": "purple"
         },
         "exerciseListDone":[
     

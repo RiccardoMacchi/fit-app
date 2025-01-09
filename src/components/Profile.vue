@@ -11,6 +11,14 @@ export default {
             profileUsername: '',
             profileDateOfBirth: null,
             profileWeight: null,
+            selectColor: '',
+            colors: [
+                'yellow',
+                'green',
+                'purple',
+                'blue',
+                'red'
+            ]
         };
     },
     methods: {
@@ -77,6 +85,11 @@ export default {
             }
             console.log(this.profileData.data.level)
             localStorage.setItem('profile', JSON.stringify(this.profileData))
+        },
+        changeColor(color){
+            this.profileData.data.color = color
+            localStorage.setItem('profile', JSON.stringify(this.profileData))
+            window.location.reload();
         }
 
     },
@@ -88,7 +101,7 @@ export default {
             this.profileDateOfBirth = this.profileData.data.dateOfBirth
             this.profileWeight = this.profileData.data.weight
         } else {
-            this.profileData = { data: {}, exerciseListDone: [], challengeListDone: [] };
+            this.profileData = { data: {color: 'purple'}, exerciseListDone: [], challengeListDone: [] };
         }
         this.levelUp()
         console.log(this.profileData.data.level)
@@ -102,7 +115,7 @@ export default {
         LOADING
     </div>
     <div v-else class="container">
-        <h1>Profilo</h1>
+        <h1 :class="profileData.data.color + '-text'">Profilo</h1>
         <div class="profile-info">
             <h2>Informazioni Personali</h2>
             <div class="img-profile">
@@ -136,13 +149,28 @@ export default {
                 </span>
                 </p>
             </div>
+            <div class="colors">
+                <div class="color-options">
+                    <h4>Colore:</h4>
+                    <div 
+                        v-for="color in colors" 
+                        :key="color" 
+                        class="color-dot"
+                        :class="{
+                            [color + '-bg']: true,
+                            selected: color === profileData.data.color
+                            }"
+                            @click="changeColor(color)">
+                    </div>
+                </div>
+            </div>
             <div class="btn-save-mod">
-                <span v-if="!allData()" @click="saveProfileData()"><i class="fa-solid fa-cloud-arrow-up"></i></span>
-                <span v-else @click="modProfileData()"><i class="fa-solid fa-pencil"></i></span>
+                <span v-if="!allData()" @click="saveProfileData()" :class="profileData.data.color + '-bg-linear'"><i class="fa-solid fa-cloud-arrow-up"></i></span>
+                <span v-else @click="modProfileData()" :class="profileData.data.color + '-bg-linear'"><i class="fa-solid fa-pencil"></i></span>
             </div>
         </div>
-        <h3>Monitora i tuoi progressi</h3>
-        <div class="line"></div>
+        <h3 :class="profileData.data.color + '-text'">Monitora i tuoi progressi</h3>
+        <div class="line" :class="profileData.data.color + '-bg-line'"></div>
         <div v-if="profileData.exerciseListDone && profileData.exerciseListDone.length" class="list-ex-done">
             <h2>Lista Esercizi Completati</h2>
             <ul>
@@ -155,7 +183,7 @@ export default {
         <div class="no-list" v-else>
             <h5>Ancora nessuna scheda completata</h5>
         </div>
-        <div class="line"></div>
+        <div class="line" :class="profileData.data.color + '-bg-line'"></div>
         <div v-if="profileData.challengeListDone && profileData.challengeListDone.length" class="list-challenge-done">
             <h2>Lista Challenge Completate</h2>
             <ul>
@@ -186,7 +214,6 @@ export default {
 
         span{
             padding: 5px 15px;
-            background: linear-gradient(135deg, #f7c788, #e89b42, #c55732);
             color: black;
             border-radius: 5px;
         }
@@ -210,9 +237,6 @@ h3{
     font-weight: bold;
     font-size: 1.5rem;
     text-transform: uppercase;
-    background: linear-gradient(to right, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     text-align: center;
     margin: 15px auto;
 }
@@ -220,10 +244,34 @@ h3{
 .line{
     width: 60%;
     margin: 0 auto;
-    background: linear-gradient(to left, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
+    // background: linear-gradient(to left, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
     height: 2px;
     margin: 20px auto;
 
+}
+
+.colors {
+    .color-options {
+        display: flex;
+        gap: 10px;
+    }
+
+    .color-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: transform 0.2s, border 0.2s;
+    }
+
+    .color-dot:hover {
+        transform: scale(1.2);
+    }
+
+    .color-dot.selected {
+        border: 2px solid #fff;
+    }
 }
 
 .list-challenge-done,

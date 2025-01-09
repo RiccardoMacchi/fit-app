@@ -1,11 +1,12 @@
 <script>
-import exerciseCards from '../data/data.json';
+import data from '../data/data.json';
 
 export default {
     name: 'Home',
     data(){
         return{
-            exerciseCards: exerciseCards.exerciseCards,
+            profileData : data.profile,
+            exerciseCards: data.exerciseCards,
             isLoading: true,
             isAdded: false,
             isNotAdded: false,
@@ -43,7 +44,9 @@ export default {
     },
     mounted(){
         const savedData = localStorage.getItem('exerciseCards')
+        const profile = localStorage.getItem('profile')
         if (savedData) {
+            this.profileData = JSON.parse(profile)
             this.exerciseCards = JSON.parse(savedData)
         } else {
             this.exerciseCards = exerciseCards.exerciseCards
@@ -56,7 +59,7 @@ export default {
 
 <template>
     <div class="container">
-        <h1>Le mie Schede</h1>
+        <h1 :class="profileData.data.color + '-text'">Le mie Schede</h1>
         <div>
             <div class="search-bar">
                 <input type="text" v-model="schedaName" placeholder="Aggiungi una nuova scheda">

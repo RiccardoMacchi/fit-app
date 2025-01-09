@@ -5,6 +5,7 @@ export default{
     name: 'Challenge',
     data(){
         return{
+            profileData : data.profile,
             challengeName: '',
             challenges: data.challenges,
             challengeDone: data.profile.challengeListDone,
@@ -78,11 +79,13 @@ export default{
     },
     mounted(){
         const savedData = localStorage.getItem('challenges')
+        const profile = localStorage.getItem('profile')        
         if (savedData) {
+            this.profileData = JSON.parse(profile)
             this.challenges = JSON.parse(savedData)
         } else {
             this.challenges = data.challenges
-            this.profileData = data.profile.challengeListDone
+            this.profileData = data.profile
             this.saveToLocalStorage();
         }
         this.challengeName = this.$route.params.id
@@ -96,7 +99,7 @@ export default{
         LOADING
     </div>
     <div v-else class="container">
-        <h1>Challenge: {{ challenge.name }}</h1>
+        <h1 :class="profileData.data.color + '-text'">Challenge: {{ challenge.name }}</h1>
         <div>
             <h4>Regole della Challenge:</h4>
             <p>{{ challenge.rules }}</p>
@@ -104,7 +107,13 @@ export default{
         <h5 v-show="isCheating" class="error">Non si saltano i giorni!!</h5>
         <div class="wrap-counter">
             <div @click="completeDay(i)" class="counter" v-for="i in challenge.duration" :class="challengeDayDone.includes(i) ? 'done' : ''">
-                <span v-html="challengeDayDone.includes(i) ? '<i class=\'fa-solid fa-star\'></i>' : i"></span>
+                <span :class="{[profileData.data.color + '-text']: challengeDayDone.includes(i)}">
+                    <i v-if="challengeDayDone.includes(i)" 
+                        class="fa-solid fa-star" 
+                        >
+                    </i>
+                    <span v-else>{{ i }}</span>
+                    </span>
             </div>
         </div>
         <div v-if="challenge.attempts">
@@ -137,18 +146,12 @@ export default{
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
+            color: black;
         }
     }
     
     .done{
         background-color: green;
-        span{
-            background: linear-gradient(45deg, #ffd700, #ffc107, #ff8c00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-        }
     }
 }
 

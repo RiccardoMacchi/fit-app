@@ -1,0 +1,31 @@
+@mixin text-yellow() {
+  background: linear-gradient(to right, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin text-green() {
+  background: linear-gradient(to right, #00ff00 0%, #008000 50%, #003300 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin text-blue() {
+  background: linear-gradient(to right, #00d4ff 0%, #0000ff 50%, #001133 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin text-red() {
+  background: linear-gradient(to right, #ff0000 0%, #b30000 50%, #660000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin text-purple() {
+  background: linear-gradient(to right, #da70d6 0%, #800080 50%, #4b0082 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+  

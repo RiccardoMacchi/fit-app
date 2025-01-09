@@ -6,6 +6,7 @@ export default {
     name: 'Exercise',
     data(){
         return{
+            profileData: data.profile,
             exerciseCards: data.exerciseCards,
             exerciseListDone:  [],
             thisExercise: '',
@@ -154,6 +155,7 @@ export default {
         const savedProfile = localStorage.getItem('profile');
         if (savedProfile) {
             this.exerciseListDone = JSON.parse(savedProfile).exerciseListDone;
+            this.profileData = JSON.parse(savedProfile)
         } else {
             this.exerciseListDone = [];
         }
@@ -182,25 +184,25 @@ export default {
     <div class="container" v-else>
         <div class="header-ex">
             <div>
-                <h1>{{  exercise.name.toUpperCase() }}</h1>
+                <h1 :class="profileData.data.color + '-text'">{{  exercise.name.toUpperCase() }}</h1>
                 <div class="timer">
                     <Timer :time="exercise.pause"/>
                 </div>
                 <div v-if="exercise.pause" class="pause-mod">
                     <h5>Pausa: {{ exercise.pause }}</h5>
-                    <i class="fa-solid fa-pencil" @click="modPause()"></i>
+                    <i class="fa-solid fa-pencil" :class="profileData.data.color" @click="modPause()"></i>
                 </div>
                 <div v-else class="pause-set">
                     <div class="set-bar">
                         <input type="text" placeholder="Tempo della pausa" @keypress.enter="setPause()" v-model="pauseValue">
-                        <i class="fa-solid fa-stopwatch" @click="setPause()"></i>
+                        <i class="fa-solid fa-stopwatch" :class="profileData.data.color" @click="setPause()"></i>
                     </div>
                     <span>Es: 2' 30''</span>
                 </div>
             </div>
         </div>
         <div class="back-list">
-            <RouterLink :to="{name:'ExerciseList', params:{id: thisExerciseList}}">
+            <RouterLink :class="profileData.data.color" :to="{name:'ExerciseList', params:{id: thisExerciseList}}">
                 <i class="fa-solid fa-layer-group"></i>
             </RouterLink>
             <h3 class="serie-length">N° tot serie: {{ exercise.series.length }}</h3>
@@ -234,7 +236,7 @@ export default {
 
                 </li>
                 <div class="add-wrapper-serie">
-                    <span class="add-serie" @click="addSerie()">Aggiungi Serie</span>
+                    <span class="add-serie" :class="profileData.data.color + '-bg'" @click="addSerie()">Aggiungi Serie</span>
                     <div>
                         <input type="text" v-model="noteEx" placeholder="Note nuova serie">
                     </div>
@@ -242,14 +244,14 @@ export default {
             </ul>
         </div>
         <div class="prev-next">
-            <RouterLink v-if="prevExercise" :to="{name:'Exercise', params:{id: prevExercise.name, listId: thisExerciseList }}">
+            <RouterLink v-if="prevExercise" :class="profileData.data.color" :to="{name:'Exercise', params:{id: prevExercise.name, listId: thisExerciseList }}">
                 <i class="fa-solid fa-caret-left"></i>
             </RouterLink>
             <span v-else></span>
-            <RouterLink v-if="nextExercise" :to="{name:'Exercise', params:{id: nextExercise.name, listId: thisExerciseList }}">
+            <RouterLink v-if="nextExercise" :class="profileData.data.color" :to="{name:'Exercise', params:{id: nextExercise.name, listId: thisExerciseList }}">
                 <i class="fa-solid fa-caret-right"></i>
             </RouterLink> 
-            <span class="btn-complete" v-else @click="completeScheda()"><i class="fa-regular fa-floppy-disk"></i></span>
+            <span class="btn-complete" :class="profileData.data.color" v-else @click="completeScheda()"><i class="fa-regular fa-floppy-disk"></i></span>
         </div>
         <div class="is-saved">
             <h4 v-show="isSaved" class="saved">Scheda completata e salvata!!</h4>
@@ -274,9 +276,6 @@ h1{
         h5{
             display: inline-block;
         }
-        i{
-            color: goldenrod;
-        }
     }
     .pause-set{
         .set-bar {
@@ -299,7 +298,6 @@ h1{
             }
             i {
                 margin-left: 8px;
-                color: gold;
                 font-size: 1.2rem;
             }
         }
@@ -322,7 +320,6 @@ h1{
         background: linear-gradient(90deg, #cc3700, #d4523a, #d8653e);
         padding: 3px 15px;
         border-radius: 5px;
-        color: gold;
         text-decoration: none;
     }
 }
@@ -379,9 +376,7 @@ ul{
         display: inline-block;
         border-radius: 5px;
         padding: 8px 25px;
-        background-color: gold;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        color: black;
     }
     div{
         text-align: right;
@@ -401,7 +396,6 @@ ul{
         background-color: #3d3d3d;
         padding: 2px 12px;
         border-radius: 5px;
-        color: gold;
 
         i{
             font-size: 2.5rem;
@@ -412,7 +406,6 @@ ul{
         padding: 10px 25px;
         background-color: #3d3d3d;
         border-radius: 5px;
-        color: gold;
     }
 }
 .is-saved{

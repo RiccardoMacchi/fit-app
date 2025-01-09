@@ -1,11 +1,12 @@
 <script>
-import diet from '../data/data.json';
+import data from '../data/data.json';
 
 export default{
     name: 'Meal',
     data(){
         return{
-            diet: diet.diet[0].cookbook,
+            profileData: data.profile,
+            diet: data.diet[0].cookbook,
             mealName: '',
             meal: {
 
@@ -71,11 +72,14 @@ export default{
     },
     mounted(){
         const savedData = localStorage.getItem('diet')
+        const profile = localStorage.getItem('profile')
         if (savedData) {
             this.diet = JSON.parse(savedData)
+            this.profileData = JSON.parse(profile)
+
             this.isLoading = false
         } else {
-            this.diet = diet.diet[0].cookbook
+            this.diet = data.diet[0].cookbook
             this.saveToLocalStorage();
             this.isLoading = false
         }
@@ -92,8 +96,8 @@ export default{
     </div>
     <div v-else class="container">
         <div class="title">
-            <h1>{{ mealName.toUpperCase() }}</h1>
-            <div class="list-diet">
+            <h1 :class="profileData.data.color + '-text'">{{ mealName.toUpperCase() }}</h1>
+            <div class="list-diet" :class="profileData.data.color + '-bg-linear'">
                 <RouterLink :to="{name: 'Cookbook'}">
                     <i class="fa-solid fa-backward"></i>
                 </RouterLink>
@@ -112,7 +116,7 @@ export default{
                     </div>
                     <div class="ingredients">
                         <h5>Ingredienti:</h5>
-                        <span class="bedge" v-for="ingredients in dish.ingredients">
+                        <span class="bedge" :class="profileData.data.color + '-bg-linear'"  v-for="ingredients in dish.ingredients">
                             {{ ingredients }}
                         </span>
                     </div>
@@ -137,7 +141,7 @@ export default{
                     <input type="text" id="ingredients" v-model="newIngredient" @keyup.enter="addIngredients()" placeholder="Inserisci e aggiungi ogni ingrediente">
                     <span class="add-ico" @click="addIngredients()"><i class="fa-solid fa-plus"></i></span>
                 </div>
-                <span class="bedge" v-for="ingredient in newIngredients">{{ ingredient }}</span>
+                <span class="bedge" :class="profileData.data.color + '-bg-linear'" v-for="ingredient in newIngredients">{{ ingredient }}</span>
                 <h5 v-show="isError" class="error">Ingrediete già presente</h5>
             </div>
             <div>
@@ -146,7 +150,7 @@ export default{
             </div>
             <div class="btn-add">
                 <h5 v-show="errorNewDish" class="error">Aggiungi almeno il nome del piatto!</h5>
-                <span @click="addDish()">Aggiungi Piatto</span>
+                <span :class="profileData.data.color + '-bg'" @click="addDish()">Aggiungi Piatto</span>
             </div>
         </div>
     </div>
@@ -171,8 +175,6 @@ li{
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: 0.375rem;
-    background: linear-gradient(135deg, #f5a962, #ea9f25, #d36b44);
-    color: black;
     margin-right: 5px;
 }
 
@@ -208,8 +210,6 @@ li{
         span{
             padding: 5px 10px;
             border-radius: 5px;
-            background-color: #2bb62b;
-            color: black;
         }
     }
 }
@@ -221,7 +221,6 @@ li{
     margin: 5px auto;
     .list-diet{
         text-align: center;
-        background: linear-gradient(135deg, #f7c788, #e89b42, #c55732);
         border-radius: 5px;
         font-weight: 600;
         position: relative;

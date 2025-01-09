@@ -1,12 +1,13 @@
 <script>
-import exerciseCards from '../data/data.json';
+import data from '../data/data.json';
 import { RouterLink } from "vue-router";
 
 export default {
     name: 'ExerciseList',
     data(){
         return{
-            exerciseCards: exerciseCards.exerciseCards,
+            profileData: data.profile,
+            exerciseCards: data.exerciseCards,
             exerciseListName: '',
             exercises: [],
             isLoading: true,
@@ -64,7 +65,10 @@ export default {
     },
     mounted(){
         const savedData = localStorage.getItem('exerciseCards')
+        const profile = localStorage.getItem('profile')
+        
         if (savedData) {
+            this.profileData = JSON.parse(profile)
             this.exerciseCards = JSON.parse(savedData)
         } else {
             this.exerciseCards = exerciseCards.exerciseCards
@@ -81,7 +85,7 @@ export default {
 
 <template>
     <div class="container">
-        <h1>{{ exerciseListName }}</h1>
+        <h1 :class="profileData.data.color + '-text'">{{ exerciseListName }}</h1>
         <div>
             <div class="search-bar">
                 <input type="text" v-model="exName" placeholder="Aggiungi un nuovo esercizio">

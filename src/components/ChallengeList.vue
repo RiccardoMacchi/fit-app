@@ -1,14 +1,16 @@
 <script>
-import challenges from '../data/data.json';
+import data from '../data/data.json';
 
 export default{
     name: 'ChallengeList',
     data(){
         return{
-            challenges : challenges.challenges,
+            profileData: data.profile,
+            challenges : data.challenges,
             newChallengeName: '',
             newChallengeRules: '',
             newChallengeDuration: 0,
+            isLoading: true
         }
     },
     methods:{
@@ -35,25 +37,33 @@ export default{
     },
     mounted(){
         const savedData = localStorage.getItem('challenges')
+        const profile = localStorage.getItem('profile')
         if (savedData) {
+            this.profileData = JSON.parse(profile)
             this.challenges = JSON.parse(savedData)
         } else {
             this.challenges = challenges.challenges
+            this.profileData = data.profile
             this.saveToLocalStorage();
         }
+        console.log(this.profileData)
+        this.isLoading = false
     }
 }
 </script>
 
 <template>
-    <div class="container">
-        <h1>Challengesss</h1>
+    <div v-if="isLoading">
+        LOADING...
+    </div>
+    <div v-else class="container">
+        <h1 :class="profileData.data.color + '-text'">Challengesss</h1>
         <div>
             <div class="challenge-list" v-if="challenges.length">
                 <RouterLink  v-for="(challenge, i) in challenges" :to="{name: 'Challenge', params:{id: challenge.name}}">
                         <h3>{{ challenge.name }}</h3>
                         <div v-if="challenge.duration - challenge.dayDone.length">
-                            <span><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i> <span class="day-left">{{ challenge.duration - challenge.dayDone.length }}gg</span></span>
+                            <span><i class="fa-solid fa-person-walking-dashed-line-arrow-right" :class="profileData.data.color"></i> <span class="day-left">{{ challenge.duration - challenge.dayDone.length }}gg</span></span>
                         </div>
                         <div v-else class="challenge-complete">
                             <span class="complete-word">COMPLETATA </span>
@@ -82,7 +92,7 @@ export default{
                     <textarea rows="4" id="rules" v-model="newChallengeRules"></textarea>
                 </div>
                 <div class="wrap-add">
-                    <span class="add-challenge" @click="addChallenge()">Aggiungi</span>
+                    <span class="add-challenge" :class="profileData.data.color + '-bg'" @click="addChallenge()">Aggiungi</span>
                 </div>
             </form>
         </div>
@@ -132,9 +142,6 @@ export default{
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
         }
-        i{
-            color: greenyellow;
-        }
     }
     .day-left{
         display: inline-block;
@@ -158,9 +165,7 @@ form{
         .add-challenge{
             border-radius: 5px;
             padding: 8px 25px;
-            background-color: gold;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            color: black;
         }
     }
 }
