@@ -20,10 +20,17 @@ export default{
                 name : this.newChallengeName,
                 duration : this.newChallengeDuration,
                 rules : this.newChallengeRules,
-                dayDone: []
+                dayDone: [],
+                attempts: 0
             }
             this.challenges.push(newChallenge)
-            this.saveToLocalStorage();
+            this.saveToLocalStorage()
+        },
+        repeatChallenge(i){
+            console.log(this.challenges[i])
+            this.challenges[i].dayDone.length = 0
+            this.saveToLocalStorage()
+
         }
     },
     mounted(){
@@ -43,14 +50,17 @@ export default{
         <h1>Challengesss</h1>
         <div>
             <div class="challenge-list" v-if="challenges.length">
-                <RouterLink  v-for="challenge in challenges" :to="{name: 'Challenge', params:{id: challenge.name}}">
+                <RouterLink  v-for="(challenge, i) in challenges" :to="{name: 'Challenge', params:{id: challenge.name}}">
                         <h3>{{ challenge.name }}</h3>
                         <div v-if="challenge.duration - challenge.dayDone.length">
                             <span><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i> <span class="day-left">{{ challenge.duration - challenge.dayDone.length }}gg</span></span>
                         </div>
                         <div v-else class="challenge-complete">
-                            COMPLETATA 
+                            <span class="complete-word">COMPLETATA </span>
                             <i class="fa-solid fa-fire"></i>
+                            <span class="wrap-repit">
+                                <i class="fa-solid fa-rotate-right" @click.prevent="repeatChallenge(i)"></i>
+                            </span>
                         </div>
                 </RouterLink>
             </div>
@@ -84,13 +94,25 @@ export default{
     .challenge-complete{
         color: green;
         font-weight: 600;
+        .complete-word{
+            font-size: 0.8rem;
+        }
         i{
             font-weight: bold;
             background: linear-gradient(to right, yellow, orange, red);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-right: 5px;
+            &.fa-solid.fa-rotate-right{
+                margin-left: 3px;
+            }
         }
+        .wrap-repit{
+            background-color: #3d3d3d;
+            padding: 4px 3px;
+            border-radius: 50%;
+        }
+
     }
     a{
         display: block;
@@ -98,6 +120,7 @@ export default{
         color: white;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 5px 10px;
         border: 1px solid grey;
         padding: 10px 5px;

@@ -430,7 +430,8 @@
         "data":{
             "username": "",
             "dateOfBirth": "",
-            "weight": null
+            "weight": null,
+            "level": 0
         },
         "exerciseListDone":[
     
@@ -550,25 +551,31 @@
             "name": "5 Trazioni",
             "duration": 7,
             "rules": "Completa 5 trazioni per 7 giorni di fila! Se salti un giorno devi ricominciare da capo!",
-            "dayDone": []
+            "dayDone": [],
+            "attempts": 0
         },
         {
             "name": "50 Addominali",
             "duration": 30,
             "rules": "Completa 50 addominali ogni giorno per 30 giorni! Se salti un giorno devi ricominciare da capo!",
-            "dayDone": []
+            "dayDone": [],
+            "attempts": 0
+
         },
         {
             "name": "10 Flessioni",
             "duration": 30,
             "rules": "Completa 10 flessioni ogni giorno per 30 giorni di fila! Se salti un giorno devi ricominciare da capo!",
-            "dayDone": []
+            "dayDone": [],
+            "attempts": 0
+
         },
         {
             "name": "3 km di Corsa",
             "duration": 7,
             "rules": "Corri 3 km ogni giorno per 7 giorni consecutivi! Se salti un giorno devi ricominciare da capo!",
-            "dayDone": []
+            "dayDone": [],
+            "attempts": 0
         }
     ]
 }

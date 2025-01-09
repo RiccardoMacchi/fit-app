@@ -43,10 +43,12 @@ export default {
     },
     setTime(){
       console.log(this.time)
-      const newArrayTime = this.time.split("'")
-      console.log(newArrayTime)
-      this.minutes = parseInt(newArrayTime[0]) || 0
-      this.seconds = parseInt(newArrayTime[1]) || 0
+      if(this.time){
+        const newArrayTime = this.time.split("'")
+        console.log(newArrayTime)
+        this.minutes = parseInt(newArrayTime[0]) || 0
+        this.seconds = parseInt(newArrayTime[1]) || 0
+      }
     }
   },
   computed: {

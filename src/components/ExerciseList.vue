@@ -70,6 +70,7 @@ export default {
             this.exerciseCards = exerciseCards.exerciseCards
             this.saveToLocalStorage();
         }
+        
         this.exerciseListName = this.$route.params.id
         this.actualList(this.exerciseListName)
         // this.checkAllDone()

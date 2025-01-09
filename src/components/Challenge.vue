@@ -30,7 +30,7 @@ export default{
             });
         },
         completeDay(i){
-            console.log(this.challengeDayDone.length)
+            // console.log(this.challengeDayDone.length)
             if(i - this.challengeDayDone[this.challengeDayDone.length - 1] === 1 || i - this.challengeDayDone[this.challengeDayDone.length - 1] === 0 || (!this.challengeDayDone.length && i === 1)){
                 if(!this.challengeDayDone.includes(i)){
                     this.challengeDayDone.push(i)
@@ -68,6 +68,12 @@ export default{
                 console.log('non si saltano i giorni')
                 this.isCheating = true
             }
+        },
+        repeatChallenge(){
+            this.challengeDayDone.length = 0
+            this.challenge.dayDone = this.challengeDayDone
+            this.challenge.attempts++
+            this.saveToLocalStorage()
         }
     },
     mounted(){
@@ -101,9 +107,15 @@ export default{
                 <span v-html="challengeDayDone.includes(i) ? '<i class=\'fa-solid fa-star\'></i>' : i"></span>
             </div>
         </div>
+        <div v-if="challenge.attempts">
+            <span>Completata: {{ challenge.attempts }}</span>
+        </div>
         <div class="challenge-complete" v-if="challengeDayDone.length === challenge.duration">
             <h5>Challenge completata!</h5>
-            <RouterLink :to="{name: 'ChallengeList'}">Torna alle Challenges <i class="fa-solid fa-arrow-left"></i></RouterLink>
+            <div class="btns">
+                <RouterLink :to="{name: 'ChallengeList'}">Torna alle Challenges <i class="fa-solid fa-arrow-left"></i></RouterLink>
+                <span @click="repeatChallenge()">Ripeti challenge<i class="fa-solid fa-rotate-right"></i></span>
+            </div>
         </div>
     </div>
 </template>
@@ -139,6 +151,7 @@ export default{
         }
     }
 }
+
 .challenge-complete{
     position: absolute;
     background: linear-gradient(45deg, #ffd700, #ffc107, #ff8c00);
@@ -158,6 +171,20 @@ export default{
     h5{
         margin-bottom: 10px;
         font-size: 1.3rem;
+    }
+
+    .btns{
+        a,
+        span{
+            display: block;
+            background-color: orange;
+            border-radius: 5px;
+            border: 1px solid black;
+            margin-bottom: 5px;
+        }
+        i{
+            margin-left: 5px;
+        }
     }
 }
 

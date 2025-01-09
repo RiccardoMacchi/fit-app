@@ -89,7 +89,7 @@ export default {
                 }
                 this.exerciseListDone.push(newExDone)
                 
-                const savedProfile = JSON.parse(localStorage.getItem('profile')) || { data: {}, exerciseListDone: [] };
+                const savedProfile = JSON.parse(localStorage.getItem('profile')) || { data: {}, exerciseListDone: [], challengeListDone: [] };
                 savedProfile.exerciseListDone = this.exerciseListDone;
                 localStorage.setItem('profile', JSON.stringify(savedProfile));
                 this.isSaved = true

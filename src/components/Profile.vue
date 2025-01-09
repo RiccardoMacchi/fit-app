@@ -19,7 +19,8 @@ export default {
                 data: {
                     username: this.profileUsername,
                     dateOfBirth: this.profileDateOfBirth,
-                    weight: parseFloat(this.profileWeight)
+                    weight: parseFloat(this.profileWeight),
+                    level: 0
                 },
                 exerciseListDone: this.profileData.exerciseListDone,
                 challengeListDone: this.profileData.challengeListDone
@@ -49,6 +50,33 @@ export default {
             const isWeightValid = weight !== null && weight !== undefined
 
             return isUsernameValid && isDateOfBirthValid && isWeightValid
+        },
+        levelUp(){
+             // console.log(this.profileData.exerciseListDone)
+           // console.log(this.profileData.challengeListDone)
+            const total = this.profileData.exerciseListDone.length + this.profileData.challengeListDone.length
+            switch (true) {
+                case total > 40:
+                    this.profileData.data.level = 5
+                    break;
+                case total >= 30:
+                    this.profileData.data.level = 4
+                    break;
+                case total >= 20:
+                    this.profileData.data.level = 3
+                    break;
+                case total >= 10:
+                    this.profileData.data.level = 2
+                    break;
+                case total >= 5:
+                    this.profileData.data.level = 1
+                    break;
+                default:
+                    this.profileData.data.level = 0
+                    break;
+            }
+            console.log(this.profileData.data.level)
+            localStorage.setItem('profile', JSON.stringify(this.profileData))
         }
 
     },
@@ -62,7 +90,8 @@ export default {
         } else {
             this.profileData = { data: {}, exerciseListDone: [], challengeListDone: [] };
         }
-
+        this.levelUp()
+        console.log(this.profileData.data.level)
         this.isLoading = false;
     },
 };
@@ -93,6 +122,19 @@ export default {
             <div v-else>
                 <label for="weight">Peso:</label>
                 <input type="number" step="0.1" id="weight" v-model="profileWeight" placeholder="Inserisci il tuo peso in kg">
+            </div>
+            <div>
+                <p>Livello: <span><i class="fa-solid fa-star" v-if="profileData.data.level" v-for="star in profileData.data.level"
+                    :class="{
+                        'bronzo': profileData.data.level === 1,
+                        'argento': profileData.data.level === 2,
+                        'oro': profileData.data.level === 3,
+                        'zaffiro': profileData.data.level === 4,
+                        'rubino': profileData.data.level === 5
+                    }"></i>
+                    <i v-else class="fa-solid fa-star wood"></i>
+                </span>
+                </p>
             </div>
             <div class="btn-save-mod">
                 <span v-if="!allData()" @click="saveProfileData()"><i class="fa-solid fa-cloud-arrow-up"></i></span>
@@ -216,4 +258,23 @@ h3{
         margin: 20px auto;
     }
 }
+.wood{
+    color: #654321;
+}
+.bronzo {
+    color: #cd7f32;
+}
+.argento {
+    color: #c0c0c0;
+}
+.oro {
+    color: #ffd700;
+}
+.zaffiro {
+    color: #0f52ba; 
+}
+.rubino {
+    color: #e0115f;
+}
+
 </style>
