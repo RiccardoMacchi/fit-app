@@ -1,5 +1,6 @@
 <script>
 import data from '../data/data.json';
+import nameControll from '../functions/nameControll.js';
 
 export default {
     name: 'Home',
@@ -40,6 +41,48 @@ export default {
         removeScheda(i){
             this.exerciseCards.splice(i, 1)
             this.saveToLocalStorage()
+        },
+        copyScheda(i){
+            console.log(this.exerciseCards[i])
+            const newCopyEx = JSON.parse(JSON.stringify(this.exerciseCards[i]))
+            console.log('prima della funzione',newCopyEx.name)
+            newCopyEx.name = this.startNameControll(newCopyEx.name)
+            console.log('dopo la funzione',newCopyEx.name)
+            this.exerciseCards.push(newCopyEx)
+            this.saveToLocalStorage()
+        },
+        startNameControll(name){
+            const arrayName = name.split(" ")
+            
+            console.log(arrayName)
+            const regex = /^([a-zA-Z]+)(\d+)$/; // Dividi in due parti: lettere e numeri
+            const match = arrayName[arrayName.length - 1].match(regex);
+
+            if (match) {
+                const word = match[1]; // Prima parte (alfabetica)
+                if(word === "copia"){
+                    arrayName.splice(arrayName.length - 1, 1)
+                    let number = parseInt(match[2]); // Seconda parte (numerica)
+                    let newName = arrayName.join(" ") + " " + word + ++number
+                    let isPresent = this.exerciseCards.some(scheda => scheda.name.toLowerCase().includes(newName.trim().toLowerCase()))
+                    if(isPresent){
+                    do{
+                        const newArrayName = newName.split(" ")
+                        const newMatch = newArrayName[newArrayName.length - 1].match(regex)
+                        let newNumber = parseInt(newMatch[2])
+                        newArrayName.splice(newArrayName.length - 1, 1)
+                        newName = newArrayName.join(" ") + " " + word + ++newNumber
+                        isPresent = this.exerciseCards.some(scheda => scheda.name.toLowerCase().includes(newName.trim().toLowerCase()))
+                    } while(isPresent)
+                        return newName;
+                    } else{
+                        return newName;
+                    }
+                }
+            } else {
+                console.log('non ancora + copia1');
+                return name + " copia1"
+            }
         }
     },
     mounted(){
@@ -72,7 +115,10 @@ export default {
         <ul>
             <li  v-for="(card, i) in exerciseCards">
                 <RouterLink :to="{name:'ExerciseList', params:{id: card.name}}"> {{ card.name }}</RouterLink>
-                <span @click.stop="removeScheda(i)"><i class="fa-solid fa-trash"></i></span>
+                <div>
+                    <span @click.stop="copyScheda(i)"><i class="fa-solid fa-copy" :class="profileData.data.color"></i></span>
+                    <span @click.stop="removeScheda(i)"><i class="fa-solid fa-trash"></i></span>
+                </div>
             </li>
         </ul>
     </div>
