@@ -103,6 +103,7 @@ export default {
                     ex.series.forEach(serie =>{
                         serie.done = false
                     })
+                    this.saveToLocalStorage()
                 });
             } else{
                 console.log('già presente')
@@ -115,6 +116,7 @@ export default {
                     ex.series.forEach(serie =>{
                         serie.done = false
                     })
+                    this.saveToLocalStorage()
                 });
             }
         },

@@ -130,7 +130,7 @@ export default {
         <div class="profile-info">
             <h2>Informazioni Personali</h2>
             <div class="img-profile">
-                <img :src="`../../public/images/level-${profileData.data.level}-${profileData.data.style}.avif`" alt="">
+                <img :src="`/images/level-${profileData.data.level}-${profileData.data.style}.avif`" alt="">
             </div>
             <p v-if="profileData.data.username">Username: <span>{{ profileData.data.username }}</span></p>
             <div v-else>
