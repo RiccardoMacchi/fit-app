@@ -432,7 +432,8 @@
             "dateOfBirth": "",
             "weight": null,
             "level": 0,
-            "color": "purple"
+            "color": "purple",
+            "style": "cartoon"
         },
         "exerciseListDone":[
     

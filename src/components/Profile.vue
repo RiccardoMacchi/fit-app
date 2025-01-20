@@ -18,6 +18,11 @@ export default {
                 'purple',
                 'blue',
                 'red'
+            ],
+            styles:[
+                'cartoon',
+                'anime',
+                'colors'
             ]
         };
     },
@@ -80,7 +85,7 @@ export default {
                     this.profileData.data.level = 1
                     break;
                 default:
-                    this.profileData.data.level = 0
+                    this.profileData.data.level = 1
                     break;
             }
             console.log(this.profileData.data.level)
@@ -88,6 +93,11 @@ export default {
         },
         changeColor(color){
             this.profileData.data.color = color
+            localStorage.setItem('profile', JSON.stringify(this.profileData))
+            window.location.reload();
+        },
+        changeStyle(style){
+            this.profileData.data.style = style
             localStorage.setItem('profile', JSON.stringify(this.profileData))
             window.location.reload();
         }
@@ -104,6 +114,7 @@ export default {
             this.profileData = { data: {color: 'purple'}, exerciseListDone: [], challengeListDone: [] };
         }
         this.levelUp()
+        // this.profileData.data.level = 5
         console.log(this.profileData.data.level)
         this.isLoading = false;
     },
@@ -119,7 +130,7 @@ export default {
         <div class="profile-info">
             <h2>Informazioni Personali</h2>
             <div class="img-profile">
-                <img src="../../public/luna-mercurio-leone.webp" alt="">
+                <img :src="`../../public/images/level-${profileData.data.level}-${profileData.data.style}.avif`" alt="">
             </div>
             <p v-if="profileData.data.username">Username: <span>{{ profileData.data.username }}</span></p>
             <div v-else>
@@ -161,6 +172,23 @@ export default {
                             selected: color === profileData.data.color
                             }"
                             @click="changeColor(color)">
+                    </div>
+                </div>
+            </div>
+            <div class="styles">
+                <div class="style-options">
+                    <h4>Stili:</h4>
+                    <div 
+                        v-for="style in styles" 
+                        :key="style"
+                        class="style-dot"
+                        :class="{
+                            selected: style === profileData.data.style
+                            }"
+                        @click="changeStyle(style)">
+                        <span v-if="style === 'colors'"><i class="fa-solid fa-yin-yang" :class="profileData.data.color + '-text'"></i></span>
+                        <span v-else-if="style === 'anime'"><i class="fa-solid fa-dragon" :class="profileData.data.color + '-text'"></i></span>
+                        <span v-else-if="style === 'cartoon'"><i class="fa-brands fa-fort-awesome" :class="profileData.data.color + '-text'"></i></span>
                     </div>
                 </div>
             </div>
@@ -223,6 +251,9 @@ export default {
         img{
             border-radius: 10px;
             width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            object-position: top;
         }
     }
 }
@@ -270,7 +301,36 @@ h3{
     }
 
     .color-dot.selected {
-        border: 2px solid #fff;
+        border: 2px solid #a0a0a0;
+    }
+}
+
+.styles {
+    .style-options {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .style-dot {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: transform 0.2s, border 0.2s;
+        position: relative;
+
+        span{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+    }
+
+    .selected {
+        border: 2px solid #a0a0a0;
     }
 }
 

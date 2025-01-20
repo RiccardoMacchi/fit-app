@@ -1,5 +1,6 @@
 <script>
 import data from '../data/data.json';
+import nameControll from '../functions/nameControll';
 import { RouterLink } from "vue-router";
 
 export default {
@@ -49,6 +50,16 @@ export default {
             this.saveToLocalStorage()
 
         },
+        copyExercise(i){
+            console.log(this.exercises[i])
+            const newCopyEx = JSON.parse(JSON.stringify(this.exercises[i]))
+            console.log('prima della funzione',newCopyEx.name)
+            console.log(this.exercises)
+            newCopyEx.name = nameControll(newCopyEx.name, this.exercises)
+            console.log('dopo la funzione',newCopyEx.name)
+            this.exercises.push(newCopyEx)
+            this.saveToLocalStorage()
+        },
         actualList(id){
             this.exerciseCards.forEach(list =>{
                 if(list.name === id){
@@ -71,7 +82,7 @@ export default {
             this.profileData = JSON.parse(profile)
             this.exerciseCards = JSON.parse(savedData)
         } else {
-            this.exerciseCards = exerciseCards.exerciseCards
+            this.exerciseCards = data.exerciseCards
             this.saveToLocalStorage();
         }
         
@@ -98,7 +109,10 @@ export default {
             <li v-for="(exercie, i) in exercises" :class="{ 'done' : checkAllDone(i) }">
                 <RouterLink :to="{name:'Exercise', params:{id: exercie.name, listId: exerciseListName }}"> {{ exercie.name }} 
                 </RouterLink>
-                <span @click.stop="removeExercise(i)"><i class="fa-solid fa-trash"></i></span>
+                <div>
+                    <span @click.stop="copyExercise(i)"><i class="fa-solid fa-copy" :class="profileData.data.color"></i></span>
+                    <span @click.stop="removeExercise(i)"><i class="fa-solid fa-trash"></i></span>
+                </div>
             </li>
         </ul>
     </div>
