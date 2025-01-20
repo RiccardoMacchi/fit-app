@@ -42,7 +42,7 @@ export default{
             this.profileData = JSON.parse(profile)
             this.challenges = JSON.parse(savedData)
         } else {
-            this.challenges = challenges.challenges
+            this.challenges = data.challenges
             this.profileData = data.profile
             this.saveToLocalStorage();
         }
