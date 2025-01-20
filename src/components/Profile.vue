@@ -33,7 +33,9 @@ export default {
                     username: this.profileUsername,
                     dateOfBirth: this.profileDateOfBirth,
                     weight: parseFloat(this.profileWeight),
-                    level: 0
+                    level: 1,
+                    color: this.profileData.data.color ? this.profileData.data.color : this.colors[0],
+                    style: this.profileData.data.style ? this.profileData.data.style : this.styles[0]
                 },
                 exerciseListDone: this.profileData.exerciseListDone,
                 challengeListDone: this.profileData.challengeListDone
@@ -44,7 +46,14 @@ export default {
         },
         modProfileData(){
             const clearProfileData = {
-                data : {},
+                data : {
+                    username: '',
+                    dateOfBirth: '',
+                    weight: null,
+                    level: 1,
+                    color: this.profileData.data.color ? this.profileData.data.color : this.colors[0],
+                    style: this.profileData.data.style ? this.profileData.data.style : this.styles[0]
+                },
                 exerciseListDone: this.profileData.exerciseListDone,
                 challengeListDone: this.profileData.challengeListDone
             }
@@ -132,6 +141,19 @@ export default {
             <div class="img-profile">
                 <img :src="`/images/level-${profileData.data.level}-${profileData.data.style}.avif`" alt="">
             </div>
+            <div>
+                <p>Livello: <span><i class="fa-solid fa-star" v-if="profileData.data.level" v-for="star in profileData.data.level"
+                    :class="{
+                        'bronzo': profileData.data.level === 1,
+                        'argento': profileData.data.level === 2,
+                        'oro': profileData.data.level === 3,
+                        'zaffiro': profileData.data.level === 4,
+                        'rubino': profileData.data.level === 5
+                    }"></i>
+                    <i v-else class="fa-solid fa-star wood"></i>
+                </span>
+                </p>
+            </div>
             <p v-if="profileData.data.username">Username: <span>{{ profileData.data.username }}</span></p>
             <div v-else>
                 <label for="username">Username:</label>
@@ -147,18 +169,13 @@ export default {
                 <label for="weight">Peso:</label>
                 <input type="number" step="0.1" id="weight" v-model="profileWeight" placeholder="Inserisci il tuo peso in kg">
             </div>
+            <div class="btn-save-mod">
+                <span v-if="!allData()" @click="saveProfileData()" :class="profileData.data.color + '-bg-linear'"><i class="fa-solid fa-cloud-arrow-up"></i></span>
+                <span v-else @click="modProfileData()" :class="profileData.data.color + '-bg-linear'"><i class="fa-solid fa-pencil"></i></span>
+            </div>
+            <div class="line" :class="profileData.data.color + '-bg-line'"></div>
             <div>
-                <p>Livello: <span><i class="fa-solid fa-star" v-if="profileData.data.level" v-for="star in profileData.data.level"
-                    :class="{
-                        'bronzo': profileData.data.level === 1,
-                        'argento': profileData.data.level === 2,
-                        'oro': profileData.data.level === 3,
-                        'zaffiro': profileData.data.level === 4,
-                        'rubino': profileData.data.level === 5
-                    }"></i>
-                    <i v-else class="fa-solid fa-star wood"></i>
-                </span>
-                </p>
+                <h4 class="mod-title" :class="profileData.data.color + '-text'">Modifica lo stile:</h4>
             </div>
             <div class="colors">
                 <div class="color-options">
@@ -191,10 +208,6 @@ export default {
                         <span v-else-if="style === 'cartoon'"><i class="fa-brands fa-fort-awesome" :class="profileData.data.color + '-text'"></i></span>
                     </div>
                 </div>
-            </div>
-            <div class="btn-save-mod">
-                <span v-if="!allData()" @click="saveProfileData()" :class="profileData.data.color + '-bg-linear'"><i class="fa-solid fa-cloud-arrow-up"></i></span>
-                <span v-else @click="modProfileData()" :class="profileData.data.color + '-bg-linear'"><i class="fa-solid fa-pencil"></i></span>
             </div>
         </div>
         <h3 :class="profileData.data.color + '-text'">Monitora i tuoi progressi</h3>
@@ -272,6 +285,11 @@ h3{
     margin: 15px auto;
 }
 
+.mod-title{
+    font-size: 1.4rem;
+    margin-top: 20px;
+}
+
 .line{
     width: 60%;
     margin: 0 auto;
@@ -282,6 +300,7 @@ h3{
 }
 
 .colors {
+    margin: 10px auto;
     .color-options {
         display: flex;
         gap: 10px;
@@ -306,6 +325,7 @@ h3{
 }
 
 .styles {
+    margin: 10px auto;
     .style-options {
         display: flex;
         align-items: center;
