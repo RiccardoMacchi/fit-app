@@ -26,17 +26,6 @@
   margin: 0 auto;
 }
 
-.fa-solid.fa-trash{
-  margin-right: 3px;
-  background: linear-gradient(90deg, #ff4500, #ff6347, #ff7f50);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.fa-solid.fa-copy{
-  margin-right: 7px;
-}
-
 .search-bar span,
 .done{
   background-color: #3A5F0B;
@@ -68,6 +57,76 @@ h1 {
   @include text-yellow;
   text-align: center;
   margin: 15px auto;
+}
+
+
+// Liste
+
+li{
+  list-style: none;
+  a{    
+      text-decoration: none;
+      .list-el{
+          border: 1px solid grey;
+          border-radius: 5px;
+          margin: 2px auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: white;
+          flex-grow: 1;
+          padding: 7px 5px;
+      }
+  }
+}
+
+.input-container {
+  position: relative;
+  display: inline-block;
+  input {
+      width: 100%;
+      padding-right: 30px;
+      box-sizing: border-box;
+  }
+  i {
+      position: absolute;
+      top: 55%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: green;
+      transition: color 0.2s ease;
+  }
+}
+
+.icon-container{
+    display: inline-block;
+    padding: 5px 8px;
+    background: #3d3d3d;
+    border-radius: 5px;
+    margin-right: 5px;
+        
+    
+    .fa-solid.fa-copy{
+    }
+  }
+.fa-solid.fa-trash{
+    background: linear-gradient(90deg, #ff4500, #ff6347, #ff7f50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+  
+.right{
+  text-align: right;
+  font-size: 0.8rem;
+}
+
+// div linea
+.line{
+  width: 60%;
+  margin: 0 auto;
+  height: 2px;
+  margin: 20px auto;
 }
 
 // Colori testi

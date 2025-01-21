@@ -347,6 +347,10 @@ ul{
             font-size: 0.7rem;
         }
 
+        .fa-solid.fa-trash{
+            margin-right: 5px;
+        }
+
         .reps{
             font-size: 1.3rem;
             .fa-solid.fa-minus{

@@ -15,6 +15,8 @@ export default {
             isAdded: false,
             isNotAdded: false,
             exName: '',
+            changeName: [],
+            newName: ''
             }
     },
     methods:{
@@ -72,6 +74,26 @@ export default {
                 return false
             }
             return this.exercises[i].series.every(serie => serie.done)
+        },
+        modName(i){
+            this.changeName.length = 0
+            this.changeName.push(i)
+            this.newName = this.exercises[i].name
+        },
+        confirmChangeName(i){
+            console.log('start confirm')
+            const isPresent = this.exercises.some(scheda => scheda.name.toLowerCase().includes(this.newName.trim().toLowerCase()))
+            if(!isPresent){
+                this.exercises[i].name = this.newName
+                this.saveToLocalStorage()
+                const indexToRemove = this.changeName.indexOf(i)
+                this.changeName.splice(indexToRemove, 1)
+                this.isAdded = true
+                this.isNotAdded = false
+            } else {
+                this.isAdded = false
+                this.isNotAdded = true
+            }
         }
     },
     mounted(){
@@ -105,34 +127,32 @@ export default {
             <h5 id="added" v-show="isAdded">Esercizio aggiunto!</h5>
             <h5 id="error" v-show="isNotAdded">Impossibile aggiungere l'esercizio!</h5>
         </div>
+        <div class="line" :class="profileData.data.color + '-bg-line'"></div>
+        <h3>I miei esercizi:</h3>
+        <h4 class="right">Tot: {{ exercises.length }}</h4>
         <ul>
             <li v-for="(exercie, i) in exercises" :class="{ 'done' : checkAllDone(i) }">
-                <RouterLink :to="{name:'Exercise', params:{id: exercie.name, listId: exerciseListName }}"> {{ exercie.name }} 
+                <RouterLink :to="{name:'Exercise', params:{id: exercie.name, listId: exerciseListName }}">
+                    <div class="list-el">
+                        <span v-if="!changeName.includes(i)" @click.stop.prevent="modName(i)">
+                            {{ exercie.name }}
+                        </span>
+                        <div v-else class="input-container">
+                            <input type="text" v-model="newName" @click.stop.prevent @keyup.enter="confirmChangeName(i)">
+                            <i class="fa-solid fa-check" @click.stop.prevent="confirmChangeName(i)"></i>
+                        </div>
+                        <div>
+                            <div class="icon-container" @click.stop.prevent="copyExercise(i)"><i class="fa-solid fa-copy" :class="profileData.data.color"></i></div>
+                            <div class="icon-container" @click.stop.prevent="removeExercise(i)"><i class="fa-solid fa-trash"></i></div>
+                        </div>
+                    </div>
                 </RouterLink>
-                <div>
-                    <span @click.stop="copyExercise(i)"><i class="fa-solid fa-copy" :class="profileData.data.color"></i></span>
-                    <span @click.stop="removeExercise(i)"><i class="fa-solid fa-trash"></i></span>
-                </div>
             </li>
         </ul>
     </div>
 </template>
 
 <style lang="scss" scoped>
-li{
-    display: block;
-    padding: 10px 5px;
-    border: 1px solid grey;
-    border-radius: 5px;
-    margin: 2px auto;
-    display: flex;
-    justify-content: space-between;
-    a{
-        text-decoration: none;
-        color: white;
-        flex-grow: 1;
-    }
-}
 
 h5{
     padding-left: 10px;

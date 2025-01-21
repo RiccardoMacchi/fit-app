@@ -120,10 +120,10 @@ export default {
             this.profileDateOfBirth = this.profileData.data.dateOfBirth
             this.profileWeight = this.profileData.data.weight
         } else {
-            this.profileData = { data: {color: 'purple'}, exerciseListDone: [], challengeListDone: [] };
+            this.profileData = { data: {color: 'yellow'}, exerciseListDone: [], challengeListDone: [] };
         }
         this.levelUp()
-        // this.profileData.data.level = 5
+        this.profileData.data.level = 1
         console.log(this.profileData.data.level)
         this.isLoading = false;
     },
@@ -288,15 +288,6 @@ h3{
 .mod-title{
     font-size: 1.4rem;
     margin-top: 20px;
-}
-
-.line{
-    width: 60%;
-    margin: 0 auto;
-    // background: linear-gradient(to left, gold 0%, darkgoldenrod 50%, rgb(40, 39, 39) 100%);
-    height: 2px;
-    margin: 20px auto;
-
 }
 
 .colors {

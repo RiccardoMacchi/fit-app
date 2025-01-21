@@ -12,6 +12,8 @@ export default {
             isAdded: false,
             isNotAdded: false,
             schedaName: '',
+            changeName: [],
+            newName: ''
             }
     },
     methods:{
@@ -51,6 +53,26 @@ export default {
             this.exerciseCards.push(newCopyEx)
             this.saveToLocalStorage()
         },
+        modName(i){
+            this.changeName.length = 0
+            this.changeName.push(i)
+            this.newName = this.exerciseCards[i].name
+        },
+        confirmChangeName(i){
+            console.log('start confirm')
+            const isPresent = this.exerciseCards.some(scheda => scheda.name.toLowerCase().includes(this.newName.trim().toLowerCase()))
+            if(!isPresent){
+                this.exerciseCards[i].name = this.newName
+                this.saveToLocalStorage()
+                const indexToRemove = this.changeName.indexOf(i)
+                this.changeName.splice(indexToRemove, 1)
+                this.isAdded = true
+                this.isNotAdded = false
+            } else {
+                this.isAdded = false
+                this.isNotAdded = true
+            }
+        }
     },
     mounted(){
         const savedData = localStorage.getItem('exerciseCards')
@@ -69,8 +91,9 @@ export default {
 
 <template>
     <div class="container">
-        <h1 :class="profileData.data.color + '-text'">Le mie Schede</h1>
+        <h1 :class="profileData.data.color + '-text'">SCHEDE</h1>
         <div>
+            <!-- <h2 :class="profileData.data.color + '-text'">Aggiungi scheda</h2> -->
             <div class="search-bar">
                 <input type="text" v-model="schedaName" placeholder="Aggiungi una nuova scheda">
                 <span @click="addScheda()"><i class="fa-solid fa-plus"></i></span>
@@ -78,35 +101,32 @@ export default {
             <h5 id="added" v-show="isAdded">Scheda aggiunta!</h5>
             <h5 id="error" v-show="isNotAdded">Impossibile aggiungere la scheda!</h5>
         </div>
-        <h4>Tot schede: {{ exerciseCards.length }}</h4>
+        <div class="line" :class="profileData.data.color + '-bg-line'"></div>
+        <h3>Le mie schede:</h3>
+        <h4 class="right">Tot: {{ exerciseCards.length }}</h4>
         <ul>
             <li  v-for="(card, i) in exerciseCards">
-                <RouterLink :to="{name:'ExerciseList', params:{id: card.name}}"> {{ card.name }}</RouterLink>
-                <div>
-                    <span @click.stop="copyScheda(i)"><i class="fa-solid fa-copy" :class="profileData.data.color"></i></span>
-                    <span @click.stop="removeScheda(i)"><i class="fa-solid fa-trash"></i></span>
-                </div>
+                <RouterLink :to="{name:'ExerciseList', params:{id: card.name}}">
+                    <div class="list-el">
+                        <span v-if="!changeName.includes(i)" @click.stop.prevent="modName(i)">
+                            {{ card.name }}
+                        </span>
+                        <div v-else class="input-container">
+                            <input type="text" v-model="newName" @click.stop.prevent @keyup.enter="confirmChangeName(i)">
+                            <i class="fa-solid fa-check" @click.stop.prevent="confirmChangeName(i)"></i>
+                        </div>
+                        <div>
+                            <div class="icon-container" @click.stop.prevent="copyScheda(i)"><i class="fa-solid fa-copy" :class="profileData.data.color"></i></div>
+                            <div class="icon-container" @click.stop.prevent="removeScheda(i)"><i class="fa-solid fa-trash"></i></div>
+                        </div>
+                    </div>
+                </RouterLink>
             </li>
         </ul>
     </div>
 </template>
 
 <style lang="scss" scoped>
-li{
-    list-style: none;
-    padding: 10px 5px;
-    border: 1px solid grey;
-    border-radius: 5px;
-    margin: 2px auto;
-    display: flex;
-    justify-content: space-between;
-    a{
-        text-decoration: none;
-        color: white;
-        flex-grow: 1;
-    }
-}
-
 h5{
     padding-left: 10px;
     &#added{
@@ -115,9 +135,5 @@ h5{
     &#error{
         color: red;
     }
-}
-
-h4{
-    text-align: right;
 }
 </style>
