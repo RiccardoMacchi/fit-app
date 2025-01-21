@@ -49,7 +49,8 @@ div{
     background-color: #333;
     position: fixed;
     width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    bottom: 0;
+    box-shadow: 0 -8px 5px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     z-index: 1000;

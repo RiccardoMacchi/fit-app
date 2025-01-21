@@ -120,7 +120,7 @@ export default {
             this.profileDateOfBirth = this.profileData.data.dateOfBirth
             this.profileWeight = this.profileData.data.weight
         } else {
-            this.profileData = { data: {color: 'yellow'}, exerciseListDone: [], challengeListDone: [] };
+            this.profileData = data.profile.data
         }
         this.levelUp()
         this.profileData.data.level = 1
@@ -376,24 +376,6 @@ h3{
         color: red;
         margin: 20px auto;
     }
-}
-.wood{
-    color: #654321;
-}
-.bronzo {
-    color: #cd7f32;
-}
-.argento {
-    color: #c0c0c0;
-}
-.oro {
-    color: #ffd700;
-}
-.zaffiro {
-    color: #0f52ba; 
-}
-.rubino {
-    color: #e0115f;
 }
 
 </style>

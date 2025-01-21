@@ -1,20 +1,20 @@
 <script setup>
 import Navbar from './components/partials/Navbar.vue';
-import Footer from './components/partials/Footer.vue';
+import Fastmenu from './components/partials/Fastmenu.vue';
 </script>
 
 <template>
-  <Navbar/>
+  <Fastmenu />
   <section>
     <RouterView/>
   </section>
-  <Footer />
+  <Navbar/>
 </template>
 
 <style lang="scss" scoped>
   section{
-    padding: 60px 0px;
-    height: calc(100vh - 50px);
-    overflow-y: auto;
+    // padding: 60px 0px;
+    height: calc(100vh - 70px);
+    overflow-y: scroll;
   }
 </style>
