@@ -9,6 +9,7 @@ export default defineConfig({
       base: '/fit-app/', // Sostituisci con il nome della tua repository
       registerType: 'autoUpdate',
       manifest: {
+        base: '/fit-app/',
         name: 'fit-app',
         short_name: 'App',
         description: 'Descrizione della tua Progressive Web App',
