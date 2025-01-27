@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
+      base: '/fit-app/',
       registerType: 'autoUpdate',
       manifest: {
         name: 'fit-app',
