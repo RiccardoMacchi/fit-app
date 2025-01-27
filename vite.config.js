@@ -8,7 +8,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Nome della tua app',
+        name: 'fit-app',
         short_name: 'App',
         description: 'Descrizione della tua Progressive Web App',
         theme_color: '#ffffff',
