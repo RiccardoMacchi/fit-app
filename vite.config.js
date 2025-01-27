@@ -28,7 +28,6 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/fit-app/',
   server: {
     host: '0.0.0.0',
     port: 5173,
