@@ -9,19 +9,20 @@ export default defineConfig({
       base: '/fit-app/', // Sostituisci con il nome della tua repository
       registerType: 'autoUpdate',
       manifest: {
-        base: '/fit-app/',
         name: 'fit-app',
         short_name: 'App',
+        start_url: '/fit-app/',
+        scope: '/fit-app/',
         description: 'Descrizione della tua Progressive Web App',
         theme_color: '#ffffff',
         icons: [
           {
-            src: '/images/icons/icon-192x192.png',
+            src: 'fit-app/images/icons/icon-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/images/icons/icon-592x592.png',
+            src: 'fit-app/images/icons/icon-592x592.png',
             sizes: '512x512',
             type: 'image/png',
           },
@@ -31,6 +32,14 @@ export default defineConfig({
   ],
   build: {
     outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+      },
+    },
   },
   server: {
     host: '0.0.0.0',

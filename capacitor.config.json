@@ -2,5 +2,9 @@
   "appId": "com.fit.app",
   "appName": "FitApp",
   "webDir": "dist",
-  "bundledWebRuntime": false
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "http://localhost:5173",
+    "cleartext": true
+  }
 }
