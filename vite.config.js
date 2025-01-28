@@ -6,9 +6,10 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
-      base: '/fit-app/', // Il prefisso per il percorso
+      base: '/fit-app/',
       registerType: 'autoUpdate',
       manifest: {
+        base: '/fit-app/',
         name: 'fit-app',
         short_name: 'App',
         start_url: '/fit-app/',
