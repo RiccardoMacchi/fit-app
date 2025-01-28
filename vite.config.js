@@ -15,7 +15,7 @@ export default defineConfig({
         start_url: '/fit-app/',
         scope: '/fit-app/',
         description: 'Descrizione della tua Progressive Web App',
-        theme_color: '#ffffff',
+        theme_color: '#000000',
         icons: [
           {
             src: '/fit-app/images/icons/icon-192x192.png',
