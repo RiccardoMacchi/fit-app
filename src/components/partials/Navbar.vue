@@ -8,7 +8,8 @@ export default{
     data(){
         return{
             profileData: {},
-            isLoading: true
+            isLoading: true,
+            pathGitHub: '/fit-app'
         }
     },
     mounted() {
