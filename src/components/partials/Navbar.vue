@@ -33,7 +33,7 @@ export default{
     </div>
     <div v-else>
         <RouterLink :to="{name:'Profile'}">
-            <img src="../../../public/logo-fit-app.png" alt="Home">
+            <img :src="`${pathGitHub}/public/logo-fit-app.png`" alt="Home">
         </RouterLink>
         <ul>
             <RouterLink :to="{name:'Home'}"><i class="fa-solid fa-dumbbell" :class="profileData.data.color"></i></RouterLink>

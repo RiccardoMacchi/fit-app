@@ -23,7 +23,8 @@ export default {
                 'cartoon',
                 'anime',
                 'colors'
-            ]
+            ],
+            pathGitHub: '/fit-app'
         };
     },
     methods: {
@@ -139,7 +140,7 @@ export default {
         <div class="profile-info">
             <h2>Informazioni Personali</h2>
             <div class="img-profile">
-                <img :src="`/images/level-${profileData.data.level}-${profileData.data.style}.avif`" alt="">
+                <img :src="`${pathGitHub}/images/level-${profileData.data.level}-${profileData.data.style}.avif`" alt="">
             </div>
             <div>
                 <p>Livello: <span><i class="fa-solid fa-star" v-if="profileData.data.level" v-for="star in profileData.data.level"

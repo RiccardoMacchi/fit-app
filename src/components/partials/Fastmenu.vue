@@ -7,7 +7,8 @@ export default{
         return{
             openMenu: false,
             profileData: {},
-            progress: 50
+            progress: 50,
+            pathGitHub: '/fit-app'
         }
     },
     methods:{
@@ -78,7 +79,7 @@ export default{
             <!-- parte sinistra img + level -->
             <div class="wrap-left">
                 <div class="img-thumb">
-                    <img :src="`/images/level-${profileData.data.level}-${profileData.data.style}.avif`" alt="">
+                    <img :src="`${pathGitHub}/images/level-${profileData.data.level}-${profileData.data.style}.avif`" alt="">
                 </div>
                 <div class="level">
                     <i class="fa-solid fa-star" v-if="profileData.data.level" v-for="star in profileData.data.level"
