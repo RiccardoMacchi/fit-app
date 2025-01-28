@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
-      base: '/fit-app/', // Sostituisci con il nome della tua repository
+      base: '/fit-app/', // Il prefisso per il percorso
       registerType: 'autoUpdate',
       manifest: {
         name: 'fit-app',
@@ -17,12 +17,12 @@ export default defineConfig({
         theme_color: '#ffffff',
         icons: [
           {
-            src: 'fit-app/images/icons/icon-192x192.png',
+            src: '/fit-app/images/icons/icon-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: 'fit-app/images/icons/icon-592x592.png',
+            src: '/fit-app/images/icons/icon-592x592.png',
             sizes: '512x512',
             type: 'image/png',
           },
